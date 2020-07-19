@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+	
+	<title>注册</title>
+	<!-- <link rel="stylesheet" type="text/css" href="css/normalize.css" /> -->
+	<link rel="stylesheet" href="/materialize/css/materialize.css">
+	<script type="text/javascript" src="/jquery/jquery.js"></script>
+	<!--materialize js-->
+	<script src="/materialize/js/materialize.js"></script>
+	<style type="text/css">
+	html,
+	body {
+	    height: 100%;
+	}
+	html {
+	    display: table;
+	    margin: auto;
+	}
+	body {
+	    display: table-cell;
+	    vertical-align: middle;
+		color:#404d5b;
+	}
+	.margin {
+	  margin: 0 !important;
+	}
+	.card-panel{ min-width:350px;}
+	</style>
+</head>
+<body class="blue lighten-4">
+	<div id="login-page" class="row">
+	    <div class="col s12 z-depth-6 card-panel">
+	      <form class="login-form">
+	        <div class="row">
+	          <div class="input-field col s12 center">
+	            <p class="center login-form-text">注册</p>
+	          </div>
+	        </div>
+	        <div class="row margin">
+	          <div class="input-field col s12">
+	            <input id="username" type="text" class="validate">
+	            <label for="username" class="left-align">用户名</label>
+	          </div>
+	        </div>
+	        <div class="row margin">
+	          <div class="input-field col s12">
+	            <input id="email" type="email" class="validate">
+	            <label for="email" class="left-align">邮箱</label>
+	          </div>
+			</div>
+			  <div class="row margin">
+				  <div class="input-field col s6">
+					  <input id="checksum" type="text" class="validate">
+					  <label for="checksum">验证码</label>
+				  </div>
+				  <div class="input-field col s6" id="btnChecksum">
+					  <a id="getChecksum" class="waves-effect waves-light btn">获取验证码</a>
+				  </div>
+			  </div>
+	        <div class="row margin">
+	          <div class="input-field col s12">
+	            <input id="password" type="password" class="validate">
+	            <label for="password">密码</label>
+	          </div>
+	        </div>
+	        <div class="row margin">
+	          <div class="input-field col s12">
+	            <input id="password-again" type="password">
+	            <label for="password-again">再次输入密码</label>
+	          </div>
+	        </div>
+	        <div class="row">
+	          <div class="input-field col s12">
+	            <a href="register.html" class="btn waves-effect waves-light col s12">立刻注册</a>
+	          </div>
+	          <div class="input-field col s12">
+	            <p class="margin center medium-small sign-up">已经有了账号? <a href="login.html">登录</a></p>
+	          </div>
+	        </div>
+	      </form>
+	    </div>
+	  </div>
+</body>
+<script>
+	var wait=60;
+	function time() {
+		if (wait == 0) {
+			$("#getChecksum").addClass("waves-light", "waves-effect" );
+			$("#getChecksum").removeClass("disabled");
+			$("#getChecksum").text("获取验证码");
+			wait = 60;
+		} else {
+			$("#getChecksum").removeClass("waves-light", "waves-effect" );
+			$("#getChecksum").addClass("disabled");
+			$("#getChecksum").text("重新发送(" + wait + ")");
+			wait--;
+			setTimeout(function() {
+				time()
+			},   1000)
+		}
+	}
+	$("#btnChecksum").click(function(){
+		time()
+	});
+
+</script>
+</html>
