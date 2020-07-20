@@ -53,42 +53,15 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
         <!-- tableName是数据库中的表名，domainObjectName是生成的JAVA模型名，后面的参数不用改，要生成更多的表就在下面继续加table标签 -->
-        <table tableName="address" domainObjectName="Address"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false"></table>
-        <table tableName="coupon" domainObjectName="Coupon"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false"></table>
-        <table tableName="goods" domainObjectName="Goods"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false"></table>
-        <table tableName="manager" domainObjectName="Manager"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false"></table>
-        <table tableName="managerrecord" domainObjectName="ManagerRecord"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false"></table>
-        <table tableName="order" domainObjectName="Order"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false"></table>
-        <table tableName="shoppingcord" domainObjectName="ShoppingCord"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false"></table>
-        <table tableName="type" domainObjectName="Type"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false"></table>
-        <table tableName="user" domainObjectName="User"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false"></table>
+        <table tableName="address" domainObjectName="Address"></table>
+        <table tableName="coupon" domainObjectName="Coupon"></table>
+        <table tableName="goods" domainObjectName="Goods"></table>
+        <table tableName="manager" domainObjectName="Manager"></table>
+        <table tableName="managerrecord" domainObjectName="ManagerRecord"></table>
+        <table tableName="order" domainObjectName="Order"></table>
+        <table tableName="shoppingcord" domainObjectName="ShoppingCord"></table>
+        <table tableName="type" domainObjectName="Type"></table>
+        <table tableName="user" domainObjectName="User"></table>
 
 
     </context>
