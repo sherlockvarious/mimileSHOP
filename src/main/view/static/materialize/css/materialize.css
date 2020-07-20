@@ -5626,7 +5626,7 @@ button.btn-floating {
 
 .materialboxed {
   display: block;
-  cursor: -webkit-zoom-in;
+  /*cursor: -webkit-zoom-in;*/
   cursor: zoom-in;
   position: relative;
   transition: opacity .4s;
@@ -5641,7 +5641,7 @@ button.btn-floating {
 }
 
 .materialboxed.active {
-  cursor: -webkit-zoom-out;
+  /*cursor: -webkit-zoom-out;*/
   cursor: zoom-out;
 }
 

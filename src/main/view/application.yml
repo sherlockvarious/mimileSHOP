@@ -40,4 +40,8 @@ server:
     uri-encoding: utf-8
 
 
+mybatis:
+  mapper-locations:
+
+
 
