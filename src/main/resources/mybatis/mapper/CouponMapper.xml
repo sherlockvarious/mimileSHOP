@@ -3,7 +3,7 @@
 <mapper namespace="edu.scdx.demo.dao.CouponMapper">
   <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.Coupon">
     <constructor>
-      <idArg column="coupon_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="coupon_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="full" javaType="java.lang.Double" jdbcType="DOUBLE" />
       <arg column="minus" javaType="java.lang.Double" jdbcType="DOUBLE" />
       <arg column="start_date" javaType="java.util.Date" jdbcType="DATE" />
@@ -86,15 +86,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from coupon
-    where coupon_id = #{couponId,jdbcType=VARCHAR}
+    where coupon_id = #{couponId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from coupon
-    where coupon_id = #{couponId,jdbcType=VARCHAR}
+    where coupon_id = #{couponId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="edu.scdx.demo.entity.CouponExample">
     delete from coupon
@@ -106,7 +106,7 @@
     insert into coupon (coupon_id, full, minus, 
       start_date, end_date, coupon_name
       )
-    values (#{couponId,jdbcType=VARCHAR}, #{full,jdbcType=DOUBLE}, #{minus,jdbcType=DOUBLE}, 
+    values (#{couponId,jdbcType=INTEGER}, #{full,jdbcType=DOUBLE}, #{minus,jdbcType=DOUBLE}, 
       #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{couponName,jdbcType=VARCHAR}
       )
   </insert>
@@ -134,7 +134,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="couponId != null">
-        #{couponId,jdbcType=VARCHAR},
+        #{couponId,jdbcType=INTEGER},
       </if>
       <if test="full != null">
         #{full,jdbcType=DOUBLE},
@@ -163,7 +163,7 @@
     update coupon
     <set>
       <if test="record.couponId != null">
-        coupon_id = #{record.couponId,jdbcType=VARCHAR},
+        coupon_id = #{record.couponId,jdbcType=INTEGER},
       </if>
       <if test="record.full != null">
         full = #{record.full,jdbcType=DOUBLE},
@@ -187,7 +187,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update coupon
-    set coupon_id = #{record.couponId,jdbcType=VARCHAR},
+    set coupon_id = #{record.couponId,jdbcType=INTEGER},
       full = #{record.full,jdbcType=DOUBLE},
       minus = #{record.minus,jdbcType=DOUBLE},
       start_date = #{record.startDate,jdbcType=DATE},
@@ -216,7 +216,7 @@
         coupon_name = #{couponName,jdbcType=VARCHAR},
       </if>
     </set>
-    where coupon_id = #{couponId,jdbcType=VARCHAR}
+    where coupon_id = #{couponId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.Coupon">
     update coupon
@@ -225,6 +225,6 @@
       start_date = #{startDate,jdbcType=DATE},
       end_date = #{endDate,jdbcType=DATE},
       coupon_name = #{couponName,jdbcType=VARCHAR}
-    where coupon_id = #{couponId,jdbcType=VARCHAR}
+    where coupon_id = #{couponId,jdbcType=INTEGER}
   </update>
 </mapper>

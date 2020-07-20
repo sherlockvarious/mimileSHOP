@@ -10,7 +10,7 @@ spring:
 #Database settings
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mimile
+    url: jdbc:mysql://localhost:3306/mimile?useSSL=false
     initialSize: 5
     minIdle: 5
     maxActive: 20

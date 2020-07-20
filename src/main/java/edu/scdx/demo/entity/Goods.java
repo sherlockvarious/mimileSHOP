@@ -1,7 +1,7 @@
 package edu.scdx.demo.entity;
 
 public class Goods {
-    private String goodsId;
+    private Integer goodsId;
 
     private String typeName;
 
@@ -25,7 +25,7 @@ public class Goods {
 
     private Integer count;
 
-    public Goods(String goodsId, String typeName, String brand, String goodsName, String goodsPic, Integer goodsDetail, String goodsOrigin, Double oldPrice, Double price, Integer goodsOrdernum, Integer goodsHits, Integer count) {
+    public Goods(Integer goodsId, String typeName, String brand, String goodsName, String goodsPic, Integer goodsDetail, String goodsOrigin, Double oldPrice, Double price, Integer goodsOrdernum, Integer goodsHits, Integer count) {
         this.goodsId = goodsId;
         this.typeName = typeName;
         this.brand = brand;
@@ -44,12 +44,12 @@ public class Goods {
         super();
     }
 
-    public String getGoodsId() {
+    public Integer getGoodsId() {
         return goodsId;
     }
 
-    public void setGoodsId(String goodsId) {
-        this.goodsId = goodsId == null ? null : goodsId.trim();
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
     }
 
     public String getTypeName() {

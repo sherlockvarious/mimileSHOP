@@ -3,7 +3,7 @@ package edu.scdx.demo.entity;
 import java.util.Date;
 
 public class Coupon {
-    private String couponId;
+    private Integer couponId;
 
     private Double full;
 
@@ -15,7 +15,7 @@ public class Coupon {
 
     private String couponName;
 
-    public Coupon(String couponId, Double full, Double minus, Date startDate, Date endDate, String couponName) {
+    public Coupon(Integer couponId, Double full, Double minus, Date startDate, Date endDate, String couponName) {
         this.couponId = couponId;
         this.full = full;
         this.minus = minus;
@@ -28,12 +28,12 @@ public class Coupon {
         super();
     }
 
-    public String getCouponId() {
+    public Integer getCouponId() {
         return couponId;
     }
 
-    public void setCouponId(String couponId) {
-        this.couponId = couponId == null ? null : couponId.trim();
+    public void setCouponId(Integer couponId) {
+        this.couponId = couponId;
     }
 
     public Double getFull() {

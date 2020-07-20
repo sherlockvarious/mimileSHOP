@@ -2,6 +2,7 @@ package edu.scdx.demo.dao;
 
 import edu.scdx.demo.entity.Type;
 import edu.scdx.demo.entity.TypeExample;
+import edu.scdx.demo.entity.TypeKey;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,7 +11,7 @@ public interface TypeMapper {
 
     int deleteByExample(TypeExample example);
 
-    int deleteByPrimaryKey(Integer typeId);
+    int deleteByPrimaryKey(TypeKey key);
 
     int insert(Type record);
 
@@ -18,7 +19,7 @@ public interface TypeMapper {
 
     List<Type> selectByExample(TypeExample example);
 
-    Type selectByPrimaryKey(Integer typeId);
+    Type selectByPrimaryKey(TypeKey key);
 
     int updateByExampleSelective(@Param("record") Type record, @Param("example") TypeExample example);
 

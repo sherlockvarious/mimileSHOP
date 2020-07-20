@@ -3,7 +3,7 @@
 <mapper namespace="edu.scdx.demo.dao.GoodsMapper">
   <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.Goods">
     <constructor>
-      <idArg column="goods_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="goods_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="type_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="brand" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="goods_name" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -93,15 +93,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from goods
-    where goods_id = #{goodsId,jdbcType=VARCHAR}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from goods
-    where goods_id = #{goodsId,jdbcType=VARCHAR}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="edu.scdx.demo.entity.GoodsExample">
     delete from goods
@@ -115,7 +115,7 @@
       goods_origin, old_price, price, 
       goods_ordernum, goods_hits, count
       )
-    values (#{goodsId,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, 
+    values (#{goodsId,jdbcType=INTEGER}, #{typeName,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, 
       #{goodsName,jdbcType=VARCHAR}, #{goodsPic,jdbcType=VARCHAR}, #{goodsDetail,jdbcType=INTEGER}, 
       #{goodsOrigin,jdbcType=VARCHAR}, #{oldPrice,jdbcType=DOUBLE}, #{price,jdbcType=DOUBLE}, 
       #{goodsOrdernum,jdbcType=INTEGER}, #{goodsHits,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}
@@ -163,7 +163,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="goodsId != null">
-        #{goodsId,jdbcType=VARCHAR},
+        #{goodsId,jdbcType=INTEGER},
       </if>
       <if test="typeName != null">
         #{typeName,jdbcType=VARCHAR},
@@ -210,7 +210,7 @@
     update goods
     <set>
       <if test="record.goodsId != null">
-        goods_id = #{record.goodsId,jdbcType=VARCHAR},
+        goods_id = #{record.goodsId,jdbcType=INTEGER},
       </if>
       <if test="record.typeName != null">
         type_name = #{record.typeName,jdbcType=VARCHAR},
@@ -252,7 +252,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update goods
-    set goods_id = #{record.goodsId,jdbcType=VARCHAR},
+    set goods_id = #{record.goodsId,jdbcType=INTEGER},
       type_name = #{record.typeName,jdbcType=VARCHAR},
       brand = #{record.brand,jdbcType=VARCHAR},
       goods_name = #{record.goodsName,jdbcType=VARCHAR},
@@ -305,7 +305,7 @@
         count = #{count,jdbcType=INTEGER},
       </if>
     </set>
-    where goods_id = #{goodsId,jdbcType=VARCHAR}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.Goods">
     update goods
@@ -320,6 +320,6 @@
       goods_ordernum = #{goodsOrdernum,jdbcType=INTEGER},
       goods_hits = #{goodsHits,jdbcType=INTEGER},
       count = #{count,jdbcType=INTEGER}
-    where goods_id = #{goodsId,jdbcType=VARCHAR}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
   </update>
 </mapper>

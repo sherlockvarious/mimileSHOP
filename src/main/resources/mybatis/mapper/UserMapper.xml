@@ -3,7 +3,7 @@
 <mapper namespace="edu.scdx.demo.dao.UserMapper">
   <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.User">
     <constructor>
-      <idArg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="nick_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="real_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="phone" javaType="java.lang.String" jdbcType="CHAR" />
@@ -92,15 +92,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user
-    where user_id = #{userId,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
-    where user_id = #{userId,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="edu.scdx.demo.entity.UserExample">
     delete from user
@@ -113,7 +113,7 @@
       phone, password, last_login_time, 
       last_login_ip, email, sex, 
       account_balance, points)
-    values (#{userId,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+    values (#{userId,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
       #{phone,jdbcType=CHAR}, #{password,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
       #{lastLoginIp,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{sex,jdbcType=BIT}, 
       #{accountBalance,jdbcType=DOUBLE}, #{points,jdbcType=INTEGER})
@@ -157,7 +157,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
-        #{userId,jdbcType=VARCHAR},
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="nickName != null">
         #{nickName,jdbcType=VARCHAR},
@@ -201,7 +201,7 @@
     update user
     <set>
       <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=VARCHAR},
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
       <if test="record.nickName != null">
         nick_name = #{record.nickName,jdbcType=VARCHAR},
@@ -240,7 +240,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update user
-    set user_id = #{record.userId,jdbcType=VARCHAR},
+    set user_id = #{record.userId,jdbcType=INTEGER},
       nick_name = #{record.nickName,jdbcType=VARCHAR},
       real_name = #{record.realName,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=CHAR},
@@ -289,7 +289,7 @@
         points = #{points,jdbcType=INTEGER},
       </if>
     </set>
-    where user_id = #{userId,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.User">
     update user
@@ -303,6 +303,6 @@
       sex = #{sex,jdbcType=BIT},
       account_balance = #{accountBalance,jdbcType=DOUBLE},
       points = #{points,jdbcType=INTEGER}
-    where user_id = #{userId,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>

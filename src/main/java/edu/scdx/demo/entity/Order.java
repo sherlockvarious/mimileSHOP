@@ -3,11 +3,11 @@ package edu.scdx.demo.entity;
 import java.util.Date;
 
 public class Order {
-    private String orderId;
+    private Integer orderId;
 
-    private String userId;
+    private Integer userId;
 
-    private String goodsId;
+    private Integer goodsId;
 
     private Date creationTime;
 
@@ -23,9 +23,9 @@ public class Order {
 
     private Integer orderPoints;
 
-    private String couponId;
+    private Integer couponId;
 
-    public Order(String orderId, String userId, String goodsId, Date creationTime, Date payTime, Date deliveryTime, Date receivingTime, Double moneyOfGoods, Double moneyOfDelivery, Integer orderPoints, String couponId) {
+    public Order(Integer orderId, Integer userId, Integer goodsId, Date creationTime, Date payTime, Date deliveryTime, Date receivingTime, Double moneyOfGoods, Double moneyOfDelivery, Integer orderPoints, Integer couponId) {
         this.orderId = orderId;
         this.userId = userId;
         this.goodsId = goodsId;
@@ -43,28 +43,28 @@ public class Order {
         super();
     }
 
-    public String getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId == null ? null : orderId.trim();
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getGoodsId() {
+    public Integer getGoodsId() {
         return goodsId;
     }
 
-    public void setGoodsId(String goodsId) {
-        this.goodsId = goodsId == null ? null : goodsId.trim();
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
     }
 
     public Date getCreationTime() {
@@ -123,11 +123,11 @@ public class Order {
         this.orderPoints = orderPoints;
     }
 
-    public String getCouponId() {
+    public Integer getCouponId() {
         return couponId;
     }
 
-    public void setCouponId(String couponId) {
-        this.couponId = couponId == null ? null : couponId.trim();
+    public void setCouponId(Integer couponId) {
+        this.couponId = couponId;
     }
 }

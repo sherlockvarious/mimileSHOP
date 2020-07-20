@@ -3,8 +3,8 @@
 <mapper namespace="edu.scdx.demo.dao.AddressMapper">
   <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.Address">
     <constructor>
-      <idArg column="address_id" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="address_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="phone" javaType="java.lang.String" jdbcType="CHAR" />
       <arg column="country" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="province" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -16,8 +16,8 @@
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="edu.scdx.demo.entity.Address">
     <constructor>
-      <idArg column="address_id" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="address_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="phone" javaType="java.lang.String" jdbcType="CHAR" />
       <arg column="country" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="province" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -122,17 +122,17 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
     from address
-    where address_id = #{addressId,jdbcType=VARCHAR}
+    where address_id = #{addressId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from address
-    where address_id = #{addressId,jdbcType=VARCHAR}
+    where address_id = #{addressId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="edu.scdx.demo.entity.AddressExample">
     delete from address
@@ -145,7 +145,7 @@
       country, province, city, 
       district, detail, is_default, 
       name)
-    values (#{addressId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, 
+    values (#{addressId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{phone,jdbcType=CHAR}, 
       #{country,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
       #{district,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, #{isDefault,jdbcType=BIT}, 
       #{name,jdbcType=VARBINARY})
@@ -186,10 +186,10 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="addressId != null">
-        #{addressId,jdbcType=VARCHAR},
+        #{addressId,jdbcType=INTEGER},
       </if>
       <if test="userId != null">
-        #{userId,jdbcType=VARCHAR},
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="phone != null">
         #{phone,jdbcType=CHAR},
@@ -227,10 +227,10 @@
     update address
     <set>
       <if test="record.addressId != null">
-        address_id = #{record.addressId,jdbcType=VARCHAR},
+        address_id = #{record.addressId,jdbcType=INTEGER},
       </if>
       <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=VARCHAR},
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
       <if test="record.phone != null">
         phone = #{record.phone,jdbcType=CHAR},
@@ -263,8 +263,8 @@
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update address
-    set address_id = #{record.addressId,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=VARCHAR},
+    set address_id = #{record.addressId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
       phone = #{record.phone,jdbcType=CHAR},
       country = #{record.country,jdbcType=VARCHAR},
       province = #{record.province,jdbcType=VARCHAR},
@@ -279,8 +279,8 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update address
-    set address_id = #{record.addressId,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=VARCHAR},
+    set address_id = #{record.addressId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
       phone = #{record.phone,jdbcType=CHAR},
       country = #{record.country,jdbcType=VARCHAR},
       province = #{record.province,jdbcType=VARCHAR},
@@ -296,7 +296,7 @@
     update address
     <set>
       <if test="userId != null">
-        user_id = #{userId,jdbcType=VARCHAR},
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="phone != null">
         phone = #{phone,jdbcType=CHAR},
@@ -323,11 +323,11 @@
         name = #{name,jdbcType=VARBINARY},
       </if>
     </set>
-    where address_id = #{addressId,jdbcType=VARCHAR}
+    where address_id = #{addressId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.scdx.demo.entity.Address">
     update address
-    set user_id = #{userId,jdbcType=VARCHAR},
+    set user_id = #{userId,jdbcType=INTEGER},
       phone = #{phone,jdbcType=CHAR},
       country = #{country,jdbcType=VARCHAR},
       province = #{province,jdbcType=VARCHAR},
@@ -336,11 +336,11 @@
       detail = #{detail,jdbcType=VARCHAR},
       is_default = #{isDefault,jdbcType=BIT},
       name = #{name,jdbcType=VARBINARY}
-    where address_id = #{addressId,jdbcType=VARCHAR}
+    where address_id = #{addressId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.Address">
     update address
-    set user_id = #{userId,jdbcType=VARCHAR},
+    set user_id = #{userId,jdbcType=INTEGER},
       phone = #{phone,jdbcType=CHAR},
       country = #{country,jdbcType=VARCHAR},
       province = #{province,jdbcType=VARCHAR},
@@ -348,6 +348,6 @@
       district = #{district,jdbcType=VARCHAR},
       detail = #{detail,jdbcType=VARCHAR},
       is_default = #{isDefault,jdbcType=BIT}
-    where address_id = #{addressId,jdbcType=VARCHAR}
+    where address_id = #{addressId,jdbcType=INTEGER}
   </update>
 </mapper>

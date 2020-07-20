@@ -3,9 +3,9 @@
 <mapper namespace="edu.scdx.demo.dao.OrderMapper">
   <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.Order">
     <constructor>
-      <idArg column="order_id" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="goods_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="order_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="goods_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="creation_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="pay_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="delivery_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
@@ -13,7 +13,7 @@
       <arg column="money_of_goods" javaType="java.lang.Double" jdbcType="DOUBLE" />
       <arg column="money_of_delivery" javaType="java.lang.Double" jdbcType="DOUBLE" />
       <arg column="order_points" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="coupon_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="coupon_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -92,15 +92,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from order
-    where order_id = #{orderId,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from order
-    where order_id = #{orderId,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="edu.scdx.demo.entity.OrderExample">
     delete from order
@@ -113,10 +113,10 @@
       creation_time, pay_time, delivery_time, 
       receiving_time, money_of_goods, money_of_delivery, 
       order_points, coupon_id)
-    values (#{orderId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, 
+    values (#{orderId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
       #{creationTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, #{deliveryTime,jdbcType=TIMESTAMP}, 
       #{receivingTime,jdbcType=TIMESTAMP}, #{moneyOfGoods,jdbcType=DOUBLE}, #{moneyOfDelivery,jdbcType=DOUBLE}, 
-      #{orderPoints,jdbcType=INTEGER}, #{couponId,jdbcType=VARCHAR})
+      #{orderPoints,jdbcType=INTEGER}, #{couponId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="edu.scdx.demo.entity.Order">
     insert into order
@@ -157,13 +157,13 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orderId != null">
-        #{orderId,jdbcType=VARCHAR},
+        #{orderId,jdbcType=INTEGER},
       </if>
       <if test="userId != null">
-        #{userId,jdbcType=VARCHAR},
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="goodsId != null">
-        #{goodsId,jdbcType=VARCHAR},
+        #{goodsId,jdbcType=INTEGER},
       </if>
       <if test="creationTime != null">
         #{creationTime,jdbcType=TIMESTAMP},
@@ -187,7 +187,7 @@
         #{orderPoints,jdbcType=INTEGER},
       </if>
       <if test="couponId != null">
-        #{couponId,jdbcType=VARCHAR},
+        #{couponId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -201,13 +201,13 @@
     update order
     <set>
       <if test="record.orderId != null">
-        order_id = #{record.orderId,jdbcType=VARCHAR},
+        order_id = #{record.orderId,jdbcType=INTEGER},
       </if>
       <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=VARCHAR},
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
       <if test="record.goodsId != null">
-        goods_id = #{record.goodsId,jdbcType=VARCHAR},
+        goods_id = #{record.goodsId,jdbcType=INTEGER},
       </if>
       <if test="record.creationTime != null">
         creation_time = #{record.creationTime,jdbcType=TIMESTAMP},
@@ -231,7 +231,7 @@
         order_points = #{record.orderPoints,jdbcType=INTEGER},
       </if>
       <if test="record.couponId != null">
-        coupon_id = #{record.couponId,jdbcType=VARCHAR},
+        coupon_id = #{record.couponId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -240,9 +240,9 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update order
-    set order_id = #{record.orderId,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=VARCHAR},
-      goods_id = #{record.goodsId,jdbcType=VARCHAR},
+    set order_id = #{record.orderId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      goods_id = #{record.goodsId,jdbcType=INTEGER},
       creation_time = #{record.creationTime,jdbcType=TIMESTAMP},
       pay_time = #{record.payTime,jdbcType=TIMESTAMP},
       delivery_time = #{record.deliveryTime,jdbcType=TIMESTAMP},
@@ -250,7 +250,7 @@
       money_of_goods = #{record.moneyOfGoods,jdbcType=DOUBLE},
       money_of_delivery = #{record.moneyOfDelivery,jdbcType=DOUBLE},
       order_points = #{record.orderPoints,jdbcType=INTEGER},
-      coupon_id = #{record.couponId,jdbcType=VARCHAR}
+      coupon_id = #{record.couponId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -259,10 +259,10 @@
     update order
     <set>
       <if test="userId != null">
-        user_id = #{userId,jdbcType=VARCHAR},
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="goodsId != null">
-        goods_id = #{goodsId,jdbcType=VARCHAR},
+        goods_id = #{goodsId,jdbcType=INTEGER},
       </if>
       <if test="creationTime != null">
         creation_time = #{creationTime,jdbcType=TIMESTAMP},
@@ -286,15 +286,15 @@
         order_points = #{orderPoints,jdbcType=INTEGER},
       </if>
       <if test="couponId != null">
-        coupon_id = #{couponId,jdbcType=VARCHAR},
+        coupon_id = #{couponId,jdbcType=INTEGER},
       </if>
     </set>
-    where order_id = #{orderId,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.Order">
     update order
-    set user_id = #{userId,jdbcType=VARCHAR},
-      goods_id = #{goodsId,jdbcType=VARCHAR},
+    set user_id = #{userId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
       creation_time = #{creationTime,jdbcType=TIMESTAMP},
       pay_time = #{payTime,jdbcType=TIMESTAMP},
       delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
@@ -302,7 +302,7 @@
       money_of_goods = #{moneyOfGoods,jdbcType=DOUBLE},
       money_of_delivery = #{moneyOfDelivery,jdbcType=DOUBLE},
       order_points = #{orderPoints,jdbcType=INTEGER},
-      coupon_id = #{couponId,jdbcType=VARCHAR}
-    where order_id = #{orderId,jdbcType=VARCHAR}
+      coupon_id = #{couponId,jdbcType=INTEGER}
+    where order_id = #{orderId,jdbcType=INTEGER}
   </update>
 </mapper>

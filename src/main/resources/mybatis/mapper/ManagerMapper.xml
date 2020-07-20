@@ -3,7 +3,7 @@
 <mapper namespace="edu.scdx.demo.dao.ManagerMapper">
   <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.Manager">
     <constructor>
-      <idArg column="manager_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="manager_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="last_login_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
@@ -85,15 +85,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from manager
-    where manager_id = #{managerId,jdbcType=VARCHAR}
+    where manager_id = #{managerId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from manager
-    where manager_id = #{managerId,jdbcType=VARCHAR}
+    where manager_id = #{managerId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="edu.scdx.demo.entity.ManagerExample">
     delete from manager
@@ -104,7 +104,7 @@
   <insert id="insert" parameterType="edu.scdx.demo.entity.Manager">
     insert into manager (manager_id, name, password, 
       last_login_time, last_login_ip)
-    values (#{managerId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+    values (#{managerId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{lastLoginTime,jdbcType=TIMESTAMP}, #{lastLoginIp,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="edu.scdx.demo.entity.Manager">
@@ -128,7 +128,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="managerId != null">
-        #{managerId,jdbcType=VARCHAR},
+        #{managerId,jdbcType=INTEGER},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -154,7 +154,7 @@
     update manager
     <set>
       <if test="record.managerId != null">
-        manager_id = #{record.managerId,jdbcType=VARCHAR},
+        manager_id = #{record.managerId,jdbcType=INTEGER},
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
@@ -175,7 +175,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update manager
-    set manager_id = #{record.managerId,jdbcType=VARCHAR},
+    set manager_id = #{record.managerId,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
@@ -200,7 +200,7 @@
         last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
       </if>
     </set>
-    where manager_id = #{managerId,jdbcType=VARCHAR}
+    where manager_id = #{managerId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.Manager">
     update manager
@@ -208,6 +208,6 @@
       password = #{password,jdbcType=VARCHAR},
       last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
       last_login_ip = #{lastLoginIp,jdbcType=VARCHAR}
-    where manager_id = #{managerId,jdbcType=VARCHAR}
+    where manager_id = #{managerId,jdbcType=INTEGER}
   </update>
 </mapper>

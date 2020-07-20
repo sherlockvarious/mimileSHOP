@@ -115,62 +115,52 @@ public class ManagerExample {
             return (Criteria) this;
         }
 
-        public Criteria andManagerIdEqualTo(String value) {
+        public Criteria andManagerIdEqualTo(Integer value) {
             addCriterion("manager_id =", value, "managerId");
             return (Criteria) this;
         }
 
-        public Criteria andManagerIdNotEqualTo(String value) {
+        public Criteria andManagerIdNotEqualTo(Integer value) {
             addCriterion("manager_id <>", value, "managerId");
             return (Criteria) this;
         }
 
-        public Criteria andManagerIdGreaterThan(String value) {
+        public Criteria andManagerIdGreaterThan(Integer value) {
             addCriterion("manager_id >", value, "managerId");
             return (Criteria) this;
         }
 
-        public Criteria andManagerIdGreaterThanOrEqualTo(String value) {
+        public Criteria andManagerIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("manager_id >=", value, "managerId");
             return (Criteria) this;
         }
 
-        public Criteria andManagerIdLessThan(String value) {
+        public Criteria andManagerIdLessThan(Integer value) {
             addCriterion("manager_id <", value, "managerId");
             return (Criteria) this;
         }
 
-        public Criteria andManagerIdLessThanOrEqualTo(String value) {
+        public Criteria andManagerIdLessThanOrEqualTo(Integer value) {
             addCriterion("manager_id <=", value, "managerId");
             return (Criteria) this;
         }
 
-        public Criteria andManagerIdLike(String value) {
-            addCriterion("manager_id like", value, "managerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andManagerIdNotLike(String value) {
-            addCriterion("manager_id not like", value, "managerId");
-            return (Criteria) this;
-        }
-
-        public Criteria andManagerIdIn(List<String> values) {
+        public Criteria andManagerIdIn(List<Integer> values) {
             addCriterion("manager_id in", values, "managerId");
             return (Criteria) this;
         }
 
-        public Criteria andManagerIdNotIn(List<String> values) {
+        public Criteria andManagerIdNotIn(List<Integer> values) {
             addCriterion("manager_id not in", values, "managerId");
             return (Criteria) this;
         }
 
-        public Criteria andManagerIdBetween(String value1, String value2) {
+        public Criteria andManagerIdBetween(Integer value1, Integer value2) {
             addCriterion("manager_id between", value1, value2, "managerId");
             return (Criteria) this;
         }
 
-        public Criteria andManagerIdNotBetween(String value1, String value2) {
+        public Criteria andManagerIdNotBetween(Integer value1, Integer value2) {
             addCriterion("manager_id not between", value1, value2, "managerId");
             return (Criteria) this;
         }

@@ -3,7 +3,7 @@ package edu.scdx.demo.entity;
 import java.util.Date;
 
 public class User {
-    private String userId;
+    private Integer userId;
 
     private String nickName;
 
@@ -25,7 +25,7 @@ public class User {
 
     private Integer points;
 
-    public User(String userId, String nickName, String realName, String phone, String password, Date lastLoginTime, String lastLoginIp, String email, Boolean sex, Double accountBalance, Integer points) {
+    public User(Integer userId, String nickName, String realName, String phone, String password, Date lastLoginTime, String lastLoginIp, String email, Boolean sex, Double accountBalance, Integer points) {
         this.userId = userId;
         this.nickName = nickName;
         this.realName = realName;
@@ -43,12 +43,12 @@ public class User {
         super();
     }
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getNickName() {

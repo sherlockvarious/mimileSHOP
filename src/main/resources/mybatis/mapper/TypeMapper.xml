@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.Type">
     <constructor>
       <idArg column="type_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="type_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="type_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="icon" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
@@ -83,15 +83,17 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="edu.scdx.demo.entity.TypeKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from type
     where type_id = #{typeId,jdbcType=INTEGER}
+      and type_name = #{typeName,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="edu.scdx.demo.entity.TypeKey">
     delete from type
     where type_id = #{typeId,jdbcType=INTEGER}
+      and type_name = #{typeName,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="edu.scdx.demo.entity.TypeExample">
     delete from type
@@ -165,19 +167,17 @@
   <update id="updateByPrimaryKeySelective" parameterType="edu.scdx.demo.entity.Type">
     update type
     <set>
-      <if test="typeName != null">
-        type_name = #{typeName,jdbcType=VARCHAR},
-      </if>
       <if test="icon != null">
         icon = #{icon,jdbcType=VARCHAR},
       </if>
     </set>
     where type_id = #{typeId,jdbcType=INTEGER}
+      and type_name = #{typeName,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.Type">
     update type
-    set type_name = #{typeName,jdbcType=VARCHAR},
-      icon = #{icon,jdbcType=VARCHAR}
+    set icon = #{icon,jdbcType=VARCHAR}
     where type_id = #{typeId,jdbcType=INTEGER}
+      and type_name = #{typeName,jdbcType=VARCHAR}
   </update>
 </mapper>

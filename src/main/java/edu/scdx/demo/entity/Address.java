@@ -1,9 +1,9 @@
 package edu.scdx.demo.entity;
 
 public class Address {
-    private String addressId;
+    private Integer addressId;
 
-    private String userId;
+    private Integer userId;
 
     private String phone;
 
@@ -21,7 +21,7 @@ public class Address {
 
     private byte[] name;
 
-    public Address(String addressId, String userId, String phone, String country, String province, String city, String district, String detail, Boolean isDefault, byte[] name) {
+    public Address(Integer addressId, Integer userId, String phone, String country, String province, String city, String district, String detail, Boolean isDefault, byte[] name) {
         this.addressId = addressId;
         this.userId = userId;
         this.phone = phone;
@@ -38,20 +38,20 @@ public class Address {
         super();
     }
 
-    public String getAddressId() {
+    public Integer getAddressId() {
         return addressId;
     }
 
-    public void setAddressId(String addressId) {
-        this.addressId = addressId == null ? null : addressId.trim();
+    public void setAddressId(Integer addressId) {
+        this.addressId = addressId;
     }
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getPhone() {

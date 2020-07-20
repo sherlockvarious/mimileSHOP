@@ -3,7 +3,7 @@ package edu.scdx.demo.entity;
 import java.util.Date;
 
 public class Manager {
-    private String managerId;
+    private Integer managerId;
 
     private String name;
 
@@ -13,7 +13,7 @@ public class Manager {
 
     private String lastLoginIp;
 
-    public Manager(String managerId, String name, String password, Date lastLoginTime, String lastLoginIp) {
+    public Manager(Integer managerId, String name, String password, Date lastLoginTime, String lastLoginIp) {
         this.managerId = managerId;
         this.name = name;
         this.password = password;
@@ -25,12 +25,12 @@ public class Manager {
         super();
     }
 
-    public String getManagerId() {
+    public Integer getManagerId() {
         return managerId;
     }
 
-    public void setManagerId(String managerId) {
-        this.managerId = managerId == null ? null : managerId.trim();
+    public void setManagerId(Integer managerId) {
+        this.managerId = managerId;
     }
 
     public String getName() {

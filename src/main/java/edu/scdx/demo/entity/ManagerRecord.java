@@ -3,19 +3,19 @@ package edu.scdx.demo.entity;
 import java.util.Date;
 
 public class ManagerRecord {
-    private String recordId;
+    private Integer recordId;
 
-    private String managerId;
+    private Integer managerId;
 
     private String detail;
 
     private Date time;
 
-    private String orderId;
+    private Integer orderId;
 
-    private String goodsId;
+    private Integer goodsId;
 
-    public ManagerRecord(String recordId, String managerId, String detail, Date time, String orderId, String goodsId) {
+    public ManagerRecord(Integer recordId, Integer managerId, String detail, Date time, Integer orderId, Integer goodsId) {
         this.recordId = recordId;
         this.managerId = managerId;
         this.detail = detail;
@@ -28,20 +28,20 @@ public class ManagerRecord {
         super();
     }
 
-    public String getRecordId() {
+    public Integer getRecordId() {
         return recordId;
     }
 
-    public void setRecordId(String recordId) {
-        this.recordId = recordId == null ? null : recordId.trim();
+    public void setRecordId(Integer recordId) {
+        this.recordId = recordId;
     }
 
-    public String getManagerId() {
+    public Integer getManagerId() {
         return managerId;
     }
 
-    public void setManagerId(String managerId) {
-        this.managerId = managerId == null ? null : managerId.trim();
+    public void setManagerId(Integer managerId) {
+        this.managerId = managerId;
     }
 
     public String getDetail() {
@@ -60,19 +60,19 @@ public class ManagerRecord {
         this.time = time;
     }
 
-    public String getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId == null ? null : orderId.trim();
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
-    public String getGoodsId() {
+    public Integer getGoodsId() {
         return goodsId;
     }
 
-    public void setGoodsId(String goodsId) {
-        this.goodsId = goodsId == null ? null : goodsId.trim();
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
     }
 }
