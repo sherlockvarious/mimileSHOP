@@ -3,9 +3,9 @@ spring:
   mvc:
     format:
       date: yyyy-MM-dd
-
-  application:
-    name: MimileShop
+    view:
+      prefix: classpath:/templates/
+      suffix: .html
 
 #Database settings
   datasource:
@@ -37,7 +37,7 @@ spring:
 
 #mybatis
 mybatis:
-  mapper-locations: classpath:mybatis/mapper/**/*.xml
+  mapper-locations: classpath:/mybatis/mapper/**/*.xml
 
 
 logging:
