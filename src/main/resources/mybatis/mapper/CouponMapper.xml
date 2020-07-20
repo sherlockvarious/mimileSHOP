@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.scdx.demo.dao.CouponMapper">
+  <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.Coupon">
+    <constructor>
+      <idArg column="coupon_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="full" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="minus" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="start_date" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="end_date" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="coupon_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    coupon_id, full, minus, start_date, end_date, coupon_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coupon
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from coupon
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.scdx.demo.entity.Coupon">
+    insert into coupon (coupon_id, full, minus, 
+      start_date, end_date, coupon_name
+      )
+    values (#{couponId,jdbcType=VARCHAR}, #{full,jdbcType=DOUBLE}, #{minus,jdbcType=DOUBLE}, 
+      #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{couponName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.scdx.demo.entity.Coupon">
+    insert into coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+      <if test="full != null">
+        full,
+      </if>
+      <if test="minus != null">
+        minus,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="couponName != null">
+        coupon_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="couponId != null">
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+      <if test="full != null">
+        #{full,jdbcType=DOUBLE},
+      </if>
+      <if test="minus != null">
+        #{minus,jdbcType=DOUBLE},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="couponName != null">
+        #{couponName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.scdx.demo.entity.Coupon">
+    update coupon
+    <set>
+      <if test="full != null">
+        full = #{full,jdbcType=DOUBLE},
+      </if>
+      <if test="minus != null">
+        minus = #{minus,jdbcType=DOUBLE},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="couponName != null">
+        coupon_name = #{couponName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.Coupon">
+    update coupon
+    set full = #{full,jdbcType=DOUBLE},
+      minus = #{minus,jdbcType=DOUBLE},
+      start_date = #{startDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      coupon_name = #{couponName,jdbcType=VARCHAR}
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.Coupon">
+    <constructor>
+      <idArg column="coupon_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="full" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="minus" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="start_date" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="end_date" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="coupon_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    coupon_id, full, minus, start_date, end_date, coupon_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coupon
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from coupon
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.scdx.demo.entity.Coupon">
+    insert into coupon (coupon_id, full, minus, 
+      start_date, end_date, coupon_name
+      )
+    values (#{couponId,jdbcType=VARCHAR}, #{full,jdbcType=DOUBLE}, #{minus,jdbcType=DOUBLE}, 
+      #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{couponName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.scdx.demo.entity.Coupon">
+    insert into coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+      <if test="full != null">
+        full,
+      </if>
+      <if test="minus != null">
+        minus,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="couponName != null">
+        coupon_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="couponId != null">
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+      <if test="full != null">
+        #{full,jdbcType=DOUBLE},
+      </if>
+      <if test="minus != null">
+        #{minus,jdbcType=DOUBLE},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="couponName != null">
+        #{couponName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.scdx.demo.entity.Coupon">
+    update coupon
+    <set>
+      <if test="full != null">
+        full = #{full,jdbcType=DOUBLE},
+      </if>
+      <if test="minus != null">
+        minus = #{minus,jdbcType=DOUBLE},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="couponName != null">
+        coupon_name = #{couponName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.Coupon">
+    update coupon
+    set full = #{full,jdbcType=DOUBLE},
+      minus = #{minus,jdbcType=DOUBLE},
+      start_date = #{startDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      coupon_name = #{couponName,jdbcType=VARCHAR}
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.Coupon">
+    <constructor>
+      <idArg column="coupon_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="full" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="minus" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="start_date" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="end_date" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="coupon_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    coupon_id, full, minus, start_date, end_date, coupon_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coupon
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from coupon
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.scdx.demo.entity.Coupon">
+    insert into coupon (coupon_id, full, minus, 
+      start_date, end_date, coupon_name
+      )
+    values (#{couponId,jdbcType=VARCHAR}, #{full,jdbcType=DOUBLE}, #{minus,jdbcType=DOUBLE}, 
+      #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{couponName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.scdx.demo.entity.Coupon">
+    insert into coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+      <if test="full != null">
+        full,
+      </if>
+      <if test="minus != null">
+        minus,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="couponName != null">
+        coupon_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="couponId != null">
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+      <if test="full != null">
+        #{full,jdbcType=DOUBLE},
+      </if>
+      <if test="minus != null">
+        #{minus,jdbcType=DOUBLE},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="couponName != null">
+        #{couponName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.scdx.demo.entity.Coupon">
+    update coupon
+    <set>
+      <if test="full != null">
+        full = #{full,jdbcType=DOUBLE},
+      </if>
+      <if test="minus != null">
+        minus = #{minus,jdbcType=DOUBLE},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="couponName != null">
+        coupon_name = #{couponName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.Coupon">
+    update coupon
+    set full = #{full,jdbcType=DOUBLE},
+      minus = #{minus,jdbcType=DOUBLE},
+      start_date = #{startDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      coupon_name = #{couponName,jdbcType=VARCHAR}
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.Coupon">
+    <constructor>
+      <idArg column="coupon_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="full" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="minus" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="start_date" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="end_date" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="coupon_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    coupon_id, full, minus, start_date, end_date, coupon_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coupon
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from coupon
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.scdx.demo.entity.Coupon">
+    insert into coupon (coupon_id, full, minus, 
+      start_date, end_date, coupon_name
+      )
+    values (#{couponId,jdbcType=VARCHAR}, #{full,jdbcType=DOUBLE}, #{minus,jdbcType=DOUBLE}, 
+      #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{couponName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.scdx.demo.entity.Coupon">
+    insert into coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+      <if test="full != null">
+        full,
+      </if>
+      <if test="minus != null">
+        minus,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="couponName != null">
+        coupon_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="couponId != null">
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+      <if test="full != null">
+        #{full,jdbcType=DOUBLE},
+      </if>
+      <if test="minus != null">
+        #{minus,jdbcType=DOUBLE},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="couponName != null">
+        #{couponName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.scdx.demo.entity.Coupon">
+    update coupon
+    <set>
+      <if test="full != null">
+        full = #{full,jdbcType=DOUBLE},
+      </if>
+      <if test="minus != null">
+        minus = #{minus,jdbcType=DOUBLE},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="couponName != null">
+        coupon_name = #{couponName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.Coupon">
+    update coupon
+    set full = #{full,jdbcType=DOUBLE},
+      minus = #{minus,jdbcType=DOUBLE},
+      start_date = #{startDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      coupon_name = #{couponName,jdbcType=VARCHAR}
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.Coupon">
+    <constructor>
+      <idArg column="coupon_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="full" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="minus" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="start_date" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="end_date" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="coupon_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    coupon_id, full, minus, start_date, end_date, coupon_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coupon
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from coupon
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.scdx.demo.entity.Coupon">
+    insert into coupon (coupon_id, full, minus, 
+      start_date, end_date, coupon_name
+      )
+    values (#{couponId,jdbcType=VARCHAR}, #{full,jdbcType=DOUBLE}, #{minus,jdbcType=DOUBLE}, 
+      #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{couponName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.scdx.demo.entity.Coupon">
+    insert into coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+      <if test="full != null">
+        full,
+      </if>
+      <if test="minus != null">
+        minus,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="couponName != null">
+        coupon_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="couponId != null">
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+      <if test="full != null">
+        #{full,jdbcType=DOUBLE},
+      </if>
+      <if test="minus != null">
+        #{minus,jdbcType=DOUBLE},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="couponName != null">
+        #{couponName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.scdx.demo.entity.Coupon">
+    update coupon
+    <set>
+      <if test="full != null">
+        full = #{full,jdbcType=DOUBLE},
+      </if>
+      <if test="minus != null">
+        minus = #{minus,jdbcType=DOUBLE},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="couponName != null">
+        coupon_name = #{couponName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.Coupon">
+    update coupon
+    set full = #{full,jdbcType=DOUBLE},
+      minus = #{minus,jdbcType=DOUBLE},
+      start_date = #{startDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      coupon_name = #{couponName,jdbcType=VARCHAR}
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.Coupon">
+    <constructor>
+      <idArg column="coupon_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="full" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="minus" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="start_date" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="end_date" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="coupon_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    coupon_id, full, minus, start_date, end_date, coupon_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coupon
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from coupon
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.scdx.demo.entity.Coupon">
+    insert into coupon (coupon_id, full, minus, 
+      start_date, end_date, coupon_name
+      )
+    values (#{couponId,jdbcType=VARCHAR}, #{full,jdbcType=DOUBLE}, #{minus,jdbcType=DOUBLE}, 
+      #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{couponName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.scdx.demo.entity.Coupon">
+    insert into coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+      <if test="full != null">
+        full,
+      </if>
+      <if test="minus != null">
+        minus,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="couponName != null">
+        coupon_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="couponId != null">
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+      <if test="full != null">
+        #{full,jdbcType=DOUBLE},
+      </if>
+      <if test="minus != null">
+        #{minus,jdbcType=DOUBLE},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="couponName != null">
+        #{couponName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.scdx.demo.entity.Coupon">
+    update coupon
+    <set>
+      <if test="full != null">
+        full = #{full,jdbcType=DOUBLE},
+      </if>
+      <if test="minus != null">
+        minus = #{minus,jdbcType=DOUBLE},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="couponName != null">
+        coupon_name = #{couponName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.Coupon">
+    update coupon
+    set full = #{full,jdbcType=DOUBLE},
+      minus = #{minus,jdbcType=DOUBLE},
+      start_date = #{startDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      coupon_name = #{couponName,jdbcType=VARCHAR}
+    where coupon_id = #{couponId,jdbcType=VARCHAR}
+  </update>
+</mapper>

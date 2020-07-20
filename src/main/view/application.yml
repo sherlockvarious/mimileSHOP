@@ -1,0 +1,43 @@
+spring:
+
+
+  application:
+    name: MimileShop
+
+#Database settings
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mimile
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    dbcp2:
+      username:root
+      password:mimile
+
+#Mailbox Settings
+  mail:
+    host: smtp.qq.com
+    port: 587
+    username: 2089105070@qq.com
+    password: fuzlmcekuzmefbjf
+    test-connection: true
+    protocol: smtp
+    default-encoding: UTF-8
+    properties:
+      mail.smtp.socketFactory.fallback : true
+      mail.smtp.starttls.enable: true
+
+
+
+#server settings
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: utf-8
+
+
+

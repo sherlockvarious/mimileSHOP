@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.scdx.demo.dao.OrderMapper">
+  <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.Order">
+    <constructor>
+      <idArg column="order_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="goods_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="creation_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="pay_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="delivery_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="receiving_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="money_of_goods" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="money_of_delivery" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="order_points" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="coupon_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, user_id, goods_id, creation_time, pay_time, delivery_time, receiving_time, 
+    money_of_goods, money_of_delivery, order_points, coupon_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.scdx.demo.entity.Order">
+    insert into order (order_id, user_id, goods_id, 
+      creation_time, pay_time, delivery_time, 
+      receiving_time, money_of_goods, money_of_delivery, 
+      order_points, coupon_id)
+    values (#{orderId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, 
+      #{creationTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, #{deliveryTime,jdbcType=TIMESTAMP}, 
+      #{receivingTime,jdbcType=TIMESTAMP}, #{moneyOfGoods,jdbcType=DOUBLE}, #{moneyOfDelivery,jdbcType=DOUBLE}, 
+      #{orderPoints,jdbcType=INTEGER}, #{couponId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.scdx.demo.entity.Order">
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="creationTime != null">
+        creation_time,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time,
+      </if>
+      <if test="receivingTime != null">
+        receiving_time,
+      </if>
+      <if test="moneyOfGoods != null">
+        money_of_goods,
+      </if>
+      <if test="moneyOfDelivery != null">
+        money_of_delivery,
+      </if>
+      <if test="orderPoints != null">
+        order_points,
+      </if>
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="creationTime != null">
+        #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTime != null">
+        #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivingTime != null">
+        #{receivingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moneyOfGoods != null">
+        #{moneyOfGoods,jdbcType=DOUBLE},
+      </if>
+      <if test="moneyOfDelivery != null">
+        #{moneyOfDelivery,jdbcType=DOUBLE},
+      </if>
+      <if test="orderPoints != null">
+        #{orderPoints,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null">
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.scdx.demo.entity.Order">
+    update order
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="creationTime != null">
+        creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivingTime != null">
+        receiving_time = #{receivingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moneyOfGoods != null">
+        money_of_goods = #{moneyOfGoods,jdbcType=DOUBLE},
+      </if>
+      <if test="moneyOfDelivery != null">
+        money_of_delivery = #{moneyOfDelivery,jdbcType=DOUBLE},
+      </if>
+      <if test="orderPoints != null">
+        order_points = #{orderPoints,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null">
+        coupon_id = #{couponId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.Order">
+    update order
+    set user_id = #{userId,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      receiving_time = #{receivingTime,jdbcType=TIMESTAMP},
+      money_of_goods = #{moneyOfGoods,jdbcType=DOUBLE},
+      money_of_delivery = #{moneyOfDelivery,jdbcType=DOUBLE},
+      order_points = #{orderPoints,jdbcType=INTEGER},
+      coupon_id = #{couponId,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.Order">
+    <constructor>
+      <idArg column="order_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="goods_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="creation_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="pay_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="delivery_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="receiving_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="money_of_goods" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="money_of_delivery" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="order_points" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="coupon_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, user_id, goods_id, creation_time, pay_time, delivery_time, receiving_time, 
+    money_of_goods, money_of_delivery, order_points, coupon_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.scdx.demo.entity.Order">
+    insert into order (order_id, user_id, goods_id, 
+      creation_time, pay_time, delivery_time, 
+      receiving_time, money_of_goods, money_of_delivery, 
+      order_points, coupon_id)
+    values (#{orderId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, 
+      #{creationTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, #{deliveryTime,jdbcType=TIMESTAMP}, 
+      #{receivingTime,jdbcType=TIMESTAMP}, #{moneyOfGoods,jdbcType=DOUBLE}, #{moneyOfDelivery,jdbcType=DOUBLE}, 
+      #{orderPoints,jdbcType=INTEGER}, #{couponId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.scdx.demo.entity.Order">
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="creationTime != null">
+        creation_time,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time,
+      </if>
+      <if test="receivingTime != null">
+        receiving_time,
+      </if>
+      <if test="moneyOfGoods != null">
+        money_of_goods,
+      </if>
+      <if test="moneyOfDelivery != null">
+        money_of_delivery,
+      </if>
+      <if test="orderPoints != null">
+        order_points,
+      </if>
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="creationTime != null">
+        #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTime != null">
+        #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivingTime != null">
+        #{receivingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moneyOfGoods != null">
+        #{moneyOfGoods,jdbcType=DOUBLE},
+      </if>
+      <if test="moneyOfDelivery != null">
+        #{moneyOfDelivery,jdbcType=DOUBLE},
+      </if>
+      <if test="orderPoints != null">
+        #{orderPoints,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null">
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.scdx.demo.entity.Order">
+    update order
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="creationTime != null">
+        creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivingTime != null">
+        receiving_time = #{receivingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moneyOfGoods != null">
+        money_of_goods = #{moneyOfGoods,jdbcType=DOUBLE},
+      </if>
+      <if test="moneyOfDelivery != null">
+        money_of_delivery = #{moneyOfDelivery,jdbcType=DOUBLE},
+      </if>
+      <if test="orderPoints != null">
+        order_points = #{orderPoints,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null">
+        coupon_id = #{couponId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.Order">
+    update order
+    set user_id = #{userId,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      receiving_time = #{receivingTime,jdbcType=TIMESTAMP},
+      money_of_goods = #{moneyOfGoods,jdbcType=DOUBLE},
+      money_of_delivery = #{moneyOfDelivery,jdbcType=DOUBLE},
+      order_points = #{orderPoints,jdbcType=INTEGER},
+      coupon_id = #{couponId,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.Order">
+    <constructor>
+      <idArg column="order_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="goods_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="creation_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="pay_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="delivery_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="receiving_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="money_of_goods" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="money_of_delivery" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="order_points" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="coupon_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, user_id, goods_id, creation_time, pay_time, delivery_time, receiving_time, 
+    money_of_goods, money_of_delivery, order_points, coupon_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.scdx.demo.entity.Order">
+    insert into order (order_id, user_id, goods_id, 
+      creation_time, pay_time, delivery_time, 
+      receiving_time, money_of_goods, money_of_delivery, 
+      order_points, coupon_id)
+    values (#{orderId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, 
+      #{creationTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, #{deliveryTime,jdbcType=TIMESTAMP}, 
+      #{receivingTime,jdbcType=TIMESTAMP}, #{moneyOfGoods,jdbcType=DOUBLE}, #{moneyOfDelivery,jdbcType=DOUBLE}, 
+      #{orderPoints,jdbcType=INTEGER}, #{couponId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.scdx.demo.entity.Order">
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="creationTime != null">
+        creation_time,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time,
+      </if>
+      <if test="receivingTime != null">
+        receiving_time,
+      </if>
+      <if test="moneyOfGoods != null">
+        money_of_goods,
+      </if>
+      <if test="moneyOfDelivery != null">
+        money_of_delivery,
+      </if>
+      <if test="orderPoints != null">
+        order_points,
+      </if>
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="creationTime != null">
+        #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTime != null">
+        #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivingTime != null">
+        #{receivingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moneyOfGoods != null">
+        #{moneyOfGoods,jdbcType=DOUBLE},
+      </if>
+      <if test="moneyOfDelivery != null">
+        #{moneyOfDelivery,jdbcType=DOUBLE},
+      </if>
+      <if test="orderPoints != null">
+        #{orderPoints,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null">
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.scdx.demo.entity.Order">
+    update order
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="creationTime != null">
+        creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivingTime != null">
+        receiving_time = #{receivingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moneyOfGoods != null">
+        money_of_goods = #{moneyOfGoods,jdbcType=DOUBLE},
+      </if>
+      <if test="moneyOfDelivery != null">
+        money_of_delivery = #{moneyOfDelivery,jdbcType=DOUBLE},
+      </if>
+      <if test="orderPoints != null">
+        order_points = #{orderPoints,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null">
+        coupon_id = #{couponId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.Order">
+    update order
+    set user_id = #{userId,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      receiving_time = #{receivingTime,jdbcType=TIMESTAMP},
+      money_of_goods = #{moneyOfGoods,jdbcType=DOUBLE},
+      money_of_delivery = #{moneyOfDelivery,jdbcType=DOUBLE},
+      order_points = #{orderPoints,jdbcType=INTEGER},
+      coupon_id = #{couponId,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.Order">
+    <constructor>
+      <idArg column="order_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="goods_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="creation_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="pay_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="delivery_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="receiving_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="money_of_goods" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="money_of_delivery" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="order_points" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="coupon_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, user_id, goods_id, creation_time, pay_time, delivery_time, receiving_time, 
+    money_of_goods, money_of_delivery, order_points, coupon_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.scdx.demo.entity.Order">
+    insert into order (order_id, user_id, goods_id, 
+      creation_time, pay_time, delivery_time, 
+      receiving_time, money_of_goods, money_of_delivery, 
+      order_points, coupon_id)
+    values (#{orderId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, 
+      #{creationTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, #{deliveryTime,jdbcType=TIMESTAMP}, 
+      #{receivingTime,jdbcType=TIMESTAMP}, #{moneyOfGoods,jdbcType=DOUBLE}, #{moneyOfDelivery,jdbcType=DOUBLE}, 
+      #{orderPoints,jdbcType=INTEGER}, #{couponId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.scdx.demo.entity.Order">
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="creationTime != null">
+        creation_time,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time,
+      </if>
+      <if test="receivingTime != null">
+        receiving_time,
+      </if>
+      <if test="moneyOfGoods != null">
+        money_of_goods,
+      </if>
+      <if test="moneyOfDelivery != null">
+        money_of_delivery,
+      </if>
+      <if test="orderPoints != null">
+        order_points,
+      </if>
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="creationTime != null">
+        #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTime != null">
+        #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivingTime != null">
+        #{receivingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moneyOfGoods != null">
+        #{moneyOfGoods,jdbcType=DOUBLE},
+      </if>
+      <if test="moneyOfDelivery != null">
+        #{moneyOfDelivery,jdbcType=DOUBLE},
+      </if>
+      <if test="orderPoints != null">
+        #{orderPoints,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null">
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.scdx.demo.entity.Order">
+    update order
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="creationTime != null">
+        creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivingTime != null">
+        receiving_time = #{receivingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moneyOfGoods != null">
+        money_of_goods = #{moneyOfGoods,jdbcType=DOUBLE},
+      </if>
+      <if test="moneyOfDelivery != null">
+        money_of_delivery = #{moneyOfDelivery,jdbcType=DOUBLE},
+      </if>
+      <if test="orderPoints != null">
+        order_points = #{orderPoints,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null">
+        coupon_id = #{couponId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.Order">
+    update order
+    set user_id = #{userId,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      receiving_time = #{receivingTime,jdbcType=TIMESTAMP},
+      money_of_goods = #{moneyOfGoods,jdbcType=DOUBLE},
+      money_of_delivery = #{moneyOfDelivery,jdbcType=DOUBLE},
+      order_points = #{orderPoints,jdbcType=INTEGER},
+      coupon_id = #{couponId,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.Order">
+    <constructor>
+      <idArg column="order_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="goods_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="creation_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="pay_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="delivery_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="receiving_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="money_of_goods" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="money_of_delivery" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="order_points" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="coupon_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, user_id, goods_id, creation_time, pay_time, delivery_time, receiving_time, 
+    money_of_goods, money_of_delivery, order_points, coupon_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.scdx.demo.entity.Order">
+    insert into order (order_id, user_id, goods_id, 
+      creation_time, pay_time, delivery_time, 
+      receiving_time, money_of_goods, money_of_delivery, 
+      order_points, coupon_id)
+    values (#{orderId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, 
+      #{creationTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, #{deliveryTime,jdbcType=TIMESTAMP}, 
+      #{receivingTime,jdbcType=TIMESTAMP}, #{moneyOfGoods,jdbcType=DOUBLE}, #{moneyOfDelivery,jdbcType=DOUBLE}, 
+      #{orderPoints,jdbcType=INTEGER}, #{couponId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.scdx.demo.entity.Order">
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="creationTime != null">
+        creation_time,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time,
+      </if>
+      <if test="receivingTime != null">
+        receiving_time,
+      </if>
+      <if test="moneyOfGoods != null">
+        money_of_goods,
+      </if>
+      <if test="moneyOfDelivery != null">
+        money_of_delivery,
+      </if>
+      <if test="orderPoints != null">
+        order_points,
+      </if>
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="creationTime != null">
+        #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTime != null">
+        #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivingTime != null">
+        #{receivingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moneyOfGoods != null">
+        #{moneyOfGoods,jdbcType=DOUBLE},
+      </if>
+      <if test="moneyOfDelivery != null">
+        #{moneyOfDelivery,jdbcType=DOUBLE},
+      </if>
+      <if test="orderPoints != null">
+        #{orderPoints,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null">
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.scdx.demo.entity.Order">
+    update order
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="creationTime != null">
+        creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivingTime != null">
+        receiving_time = #{receivingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moneyOfGoods != null">
+        money_of_goods = #{moneyOfGoods,jdbcType=DOUBLE},
+      </if>
+      <if test="moneyOfDelivery != null">
+        money_of_delivery = #{moneyOfDelivery,jdbcType=DOUBLE},
+      </if>
+      <if test="orderPoints != null">
+        order_points = #{orderPoints,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null">
+        coupon_id = #{couponId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.Order">
+    update order
+    set user_id = #{userId,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      receiving_time = #{receivingTime,jdbcType=TIMESTAMP},
+      money_of_goods = #{moneyOfGoods,jdbcType=DOUBLE},
+      money_of_delivery = #{moneyOfDelivery,jdbcType=DOUBLE},
+      order_points = #{orderPoints,jdbcType=INTEGER},
+      coupon_id = #{couponId,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.scdx.demo.entity.Order">
+    <constructor>
+      <idArg column="order_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="goods_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="creation_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="pay_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="delivery_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="receiving_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="money_of_goods" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="money_of_delivery" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="order_points" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="coupon_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, user_id, goods_id, creation_time, pay_time, delivery_time, receiving_time, 
+    money_of_goods, money_of_delivery, order_points, coupon_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.scdx.demo.entity.Order">
+    insert into order (order_id, user_id, goods_id, 
+      creation_time, pay_time, delivery_time, 
+      receiving_time, money_of_goods, money_of_delivery, 
+      order_points, coupon_id)
+    values (#{orderId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, 
+      #{creationTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, #{deliveryTime,jdbcType=TIMESTAMP}, 
+      #{receivingTime,jdbcType=TIMESTAMP}, #{moneyOfGoods,jdbcType=DOUBLE}, #{moneyOfDelivery,jdbcType=DOUBLE}, 
+      #{orderPoints,jdbcType=INTEGER}, #{couponId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.scdx.demo.entity.Order">
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="creationTime != null">
+        creation_time,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time,
+      </if>
+      <if test="receivingTime != null">
+        receiving_time,
+      </if>
+      <if test="moneyOfGoods != null">
+        money_of_goods,
+      </if>
+      <if test="moneyOfDelivery != null">
+        money_of_delivery,
+      </if>
+      <if test="orderPoints != null">
+        order_points,
+      </if>
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="creationTime != null">
+        #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTime != null">
+        #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivingTime != null">
+        #{receivingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moneyOfGoods != null">
+        #{moneyOfGoods,jdbcType=DOUBLE},
+      </if>
+      <if test="moneyOfDelivery != null">
+        #{moneyOfDelivery,jdbcType=DOUBLE},
+      </if>
+      <if test="orderPoints != null">
+        #{orderPoints,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null">
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.scdx.demo.entity.Order">
+    update order
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="creationTime != null">
+        creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivingTime != null">
+        receiving_time = #{receivingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moneyOfGoods != null">
+        money_of_goods = #{moneyOfGoods,jdbcType=DOUBLE},
+      </if>
+      <if test="moneyOfDelivery != null">
+        money_of_delivery = #{moneyOfDelivery,jdbcType=DOUBLE},
+      </if>
+      <if test="orderPoints != null">
+        order_points = #{orderPoints,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null">
+        coupon_id = #{couponId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.scdx.demo.entity.Order">
+    update order
+    set user_id = #{userId,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      receiving_time = #{receivingTime,jdbcType=TIMESTAMP},
+      money_of_goods = #{moneyOfGoods,jdbcType=DOUBLE},
+      money_of_delivery = #{moneyOfDelivery,jdbcType=DOUBLE},
+      order_points = #{orderPoints,jdbcType=INTEGER},
+      coupon_id = #{couponId,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+</mapper>
