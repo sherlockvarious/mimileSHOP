@@ -14,7 +14,7 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!--jdbc的数据库连接 wg_insert 为数据库名字-->
-        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/mimile?useUnicode=true&amp;characeterEncoding=utf-8&amp;serverTimezone=UTC" userId="root"
                         password="mimile">
             <property name="nullCatalogMeansCurrent" value="true"></property>

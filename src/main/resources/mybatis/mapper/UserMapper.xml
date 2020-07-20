@@ -20,11 +20,6 @@
     user_id, nick_name, real_name, phone, password, last_login_time, last_login_ip, email, 
     sex, account_balance, points
   </sql>
-  <select id="selectCountByEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select count(user_id)
-    from user
-    where email = #{email,jdbcType=VARCHAR}
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
