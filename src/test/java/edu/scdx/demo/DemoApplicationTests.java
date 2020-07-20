@@ -1,5 +1,6 @@
 package edu.scdx.demo;
 
+import edu.scdx.demo.dao.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
@@ -24,7 +25,6 @@ class DemoApplicationTests {
         String userId = "1";
         String password = "111111";
 
-        userMapper.
     }
 
 }
