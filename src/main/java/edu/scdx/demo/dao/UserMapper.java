@@ -14,4 +14,11 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    /**
+     *
+     * @param email  邮箱
+     * @return   找到的数目（count)
+     */
+    int selectCountByEmail(String email);
 }
