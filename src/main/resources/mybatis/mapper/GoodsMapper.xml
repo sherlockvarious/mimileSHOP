@@ -17,10 +17,82 @@
       <arg column="count" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
     goods_id, type_name, brand, goods_name, goods_pic, goods_detail, goods_origin, old_price, 
     price, goods_ordernum, goods_hits, count
   </sql>
+  <select id="selectByExample" parameterType="edu.scdx.demo.entity.GoodsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -30,6 +102,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from goods
     where goods_id = #{goodsId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="edu.scdx.demo.entity.GoodsExample">
+    delete from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="edu.scdx.demo.entity.Goods">
     insert into goods (goods_id, type_name, brand, 
@@ -122,6 +200,74 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="edu.scdx.demo.entity.GoodsExample" resultType="java.lang.Long">
+    select count(*) from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update goods
+    <set>
+      <if test="record.goodsId != null">
+        goods_id = #{record.goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeName != null">
+        type_name = #{record.typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brand != null">
+        brand = #{record.brand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsName != null">
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsPic != null">
+        goods_pic = #{record.goodsPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsDetail != null">
+        goods_detail = #{record.goodsDetail,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsOrigin != null">
+        goods_origin = #{record.goodsOrigin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldPrice != null">
+        old_price = #{record.oldPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=DOUBLE},
+      </if>
+      <if test="record.goodsOrdernum != null">
+        goods_ordernum = #{record.goodsOrdernum,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsHits != null">
+        goods_hits = #{record.goodsHits,jdbcType=INTEGER},
+      </if>
+      <if test="record.count != null">
+        count = #{record.count,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update goods
+    set goods_id = #{record.goodsId,jdbcType=VARCHAR},
+      type_name = #{record.typeName,jdbcType=VARCHAR},
+      brand = #{record.brand,jdbcType=VARCHAR},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      goods_pic = #{record.goodsPic,jdbcType=VARCHAR},
+      goods_detail = #{record.goodsDetail,jdbcType=INTEGER},
+      goods_origin = #{record.goodsOrigin,jdbcType=VARCHAR},
+      old_price = #{record.oldPrice,jdbcType=DOUBLE},
+      price = #{record.price,jdbcType=DOUBLE},
+      goods_ordernum = #{record.goodsOrdernum,jdbcType=INTEGER},
+      goods_hits = #{record.goodsHits,jdbcType=INTEGER},
+      count = #{record.count,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="edu.scdx.demo.entity.Goods">
     update goods
     <set>

@@ -10,16 +10,15 @@ spring:
 #Database settings
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mimile?serverTimezone=GMT
+    url: jdbc:mysql://localhost:3306/mimile
     initialSize: 5
     minIdle: 5
     maxActive: 20
     maxWait: 60000
     timeBetweenEvictionRunsMillis: 60000
     minEvictableIdleTimeMillis: 300000
-    dbcp2:
-      username: root
-      password: mimile
+    username: root
+    password: mimile
     type: com.alibaba.druid.pool.DruidDataSource
 
   #Mailbox Settings
@@ -43,7 +42,7 @@ mybatis:
 
 logging:
   level:
-    root: info
+    edu.scdx.demo.dao: debug
 
 
 
