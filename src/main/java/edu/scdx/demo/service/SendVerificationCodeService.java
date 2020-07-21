@@ -1,14 +1,15 @@
 package edu.scdx.demo.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
 /**
  * @author 27377-sun chao
- * @date 2020/7/20
+ * @date 2020/7/21
  * @school SiChuan University
  */
 
-@Service
-public class SendVerificationCodeService {
+public interface SendVerificationCodeService {
+    public Boolean ifHasRegister(String email);
 
+    public List<String> sendMail(String email);
 }

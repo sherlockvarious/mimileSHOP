@@ -1,33 +1,43 @@
 package edu.scdx.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+import edu.scdx.demo.service.SendVerificationCodeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author 27377-sun chao
  * @date 2020/7/19
  * @school SiChuan University
  */
-
+@RequestMapping("/send")
 @Controller
 public class SendVerificationCodeController {
 
-    @Autowired
-    private JavaMailSender mailSender;
+    @Resource
+    SendVerificationCodeService sendService;
 
-    @RequestMapping("/sendVerificationCode")
-    public String sendSimpleMail(String email) throws Exception {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("2089105070@qq.com");
-        message.setTo(email);
-        message.setSubject("主题：简单邮件");
-        message.setText("测试邮件内容");
+    @RequestMapping("/VerificationCode")
+    @ResponseBody
+    public List<String> sendSimpleMail(String email, HttpServletResponse response) throws Exception {
 
-        mailSender.send(message);
+        String msg;
+        List<String> retMsg = new ArrayList<>();
 
-        return "index";
+        if (!sendService.ifHasRegister(email)) {
+            msg = "该邮箱已被注册";
+            retMsg.add(msg);
+            return retMsg;
+        }
+
+        retMsg = sendService.sendMail(email);
+
+        return retMsg;
+
     }
 }
