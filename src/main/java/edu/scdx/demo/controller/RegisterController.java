@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 public class RegisterController {
 
     @Resource
-    RegisterService registerService;
+    private RegisterService registerService;
 
     @RequestMapping("/user")
     @ResponseBody

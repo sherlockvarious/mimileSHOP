@@ -9,7 +9,7 @@ public class ManagerExample {
 
     protected boolean distinct;
 
-    protected static List<Criteria> oredCriteria;
+    protected List<Criteria> oredCriteria;
 
     public ManagerExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -45,7 +45,7 @@ public class ManagerExample {
         return criteria;
     }
 
-    public static Criteria createCriteria() {
+    public Criteria createCriteria() {
         Criteria criteria = createCriteriaInternal();
         if (oredCriteria.size() == 0) {
             oredCriteria.add(criteria);
@@ -53,7 +53,7 @@ public class ManagerExample {
         return criteria;
     }
 
-    protected static Criteria createCriteriaInternal() {
+    protected Criteria createCriteriaInternal() {
         Criteria criteria = new Criteria();
         return criteria;
     }

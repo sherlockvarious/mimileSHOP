@@ -2,7 +2,6 @@ package edu.scdx.demo.service;
 
 import edu.scdx.demo.dao.UserMapper;
 import edu.scdx.demo.entity.User;
-import edu.scdx.demo.entity.UserExample;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,7 +27,7 @@ public class RegisterServiceImpl implements RegisterService {
      */
     @Override
     public boolean registerUser(User user){
-        if (userMapper.insert(user)==1){
+        if (userMapper.insertSelective(user)==1){
             return true;
         }
         return false;

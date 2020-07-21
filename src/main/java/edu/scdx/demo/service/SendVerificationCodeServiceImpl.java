@@ -2,7 +2,6 @@ package edu.scdx.demo.service;
 
 import edu.scdx.demo.dao.UserMapper;
 import edu.scdx.demo.entity.UserExample;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
