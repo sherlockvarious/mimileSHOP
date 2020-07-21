@@ -825,63 +825,63 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdIsNull() {
-            addCriterion("coupon_id is null");
+        public Criteria andGetCouponIdIsNull() {
+            addCriterion("get_coupon_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdIsNotNull() {
-            addCriterion("coupon_id is not null");
+        public Criteria andGetCouponIdIsNotNull() {
+            addCriterion("get_coupon_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdEqualTo(Integer value) {
-            addCriterion("coupon_id =", value, "couponId");
+        public Criteria andGetCouponIdEqualTo(Integer value) {
+            addCriterion("get_coupon_id =", value, "getCouponId");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdNotEqualTo(Integer value) {
-            addCriterion("coupon_id <>", value, "couponId");
+        public Criteria andGetCouponIdNotEqualTo(Integer value) {
+            addCriterion("get_coupon_id <>", value, "getCouponId");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdGreaterThan(Integer value) {
-            addCriterion("coupon_id >", value, "couponId");
+        public Criteria andGetCouponIdGreaterThan(Integer value) {
+            addCriterion("get_coupon_id >", value, "getCouponId");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("coupon_id >=", value, "couponId");
+        public Criteria andGetCouponIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("get_coupon_id >=", value, "getCouponId");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdLessThan(Integer value) {
-            addCriterion("coupon_id <", value, "couponId");
+        public Criteria andGetCouponIdLessThan(Integer value) {
+            addCriterion("get_coupon_id <", value, "getCouponId");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdLessThanOrEqualTo(Integer value) {
-            addCriterion("coupon_id <=", value, "couponId");
+        public Criteria andGetCouponIdLessThanOrEqualTo(Integer value) {
+            addCriterion("get_coupon_id <=", value, "getCouponId");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdIn(List<Integer> values) {
-            addCriterion("coupon_id in", values, "couponId");
+        public Criteria andGetCouponIdIn(List<Integer> values) {
+            addCriterion("get_coupon_id in", values, "getCouponId");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdNotIn(List<Integer> values) {
-            addCriterion("coupon_id not in", values, "couponId");
+        public Criteria andGetCouponIdNotIn(List<Integer> values) {
+            addCriterion("get_coupon_id not in", values, "getCouponId");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdBetween(Integer value1, Integer value2) {
-            addCriterion("coupon_id between", value1, value2, "couponId");
+        public Criteria andGetCouponIdBetween(Integer value1, Integer value2) {
+            addCriterion("get_coupon_id between", value1, value2, "getCouponId");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("coupon_id not between", value1, value2, "couponId");
+        public Criteria andGetCouponIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("get_coupon_id not between", value1, value2, "getCouponId");
             return (Criteria) this;
         }
     }

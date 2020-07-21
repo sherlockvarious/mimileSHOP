@@ -62,6 +62,7 @@
         <table tableName="shoppingcord" domainObjectName="ShoppingCord"></table>
         <table tableName="type" domainObjectName="Type"></table>
         <table tableName="user" domainObjectName="User"></table>
+        <table tableName="get_coupon" domainObjectName="getCoupon"></table>
 
 
     </context>

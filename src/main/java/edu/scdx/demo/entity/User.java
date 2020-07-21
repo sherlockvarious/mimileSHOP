@@ -25,9 +25,9 @@ public class User {
 
     private Integer points;
 
-    private Integer couponId;
+    private Integer getCouponId;
 
-    public User(Integer userId, String nickName, String realName, String phone, String password, Date lastLoginTime, String lastLoginIp, String email, Boolean sex, Double accountBalance, Integer points, Integer couponId) {
+    public User(Integer userId, String nickName, String realName, String phone, String password, Date lastLoginTime, String lastLoginIp, String email, Boolean sex, Double accountBalance, Integer points, Integer getCouponId) {
         this.userId = userId;
         this.nickName = nickName;
         this.realName = realName;
@@ -39,7 +39,7 @@ public class User {
         this.sex = sex;
         this.accountBalance = accountBalance;
         this.points = points;
-        this.couponId = couponId;
+        this.getCouponId = getCouponId;
     }
 
     public User() {
@@ -134,11 +134,11 @@ public class User {
         this.points = points;
     }
 
-    public Integer getCouponId() {
-        return couponId;
+    public Integer getGetCouponId() {
+        return getCouponId;
     }
 
-    public void setCouponId(Integer couponId) {
-        this.couponId = couponId;
+    public void setGetCouponId(Integer getCouponId) {
+        this.getCouponId = getCouponId;
     }
 }

@@ -15,13 +15,16 @@ public class Coupon {
 
     private String couponName;
 
-    public Coupon(Integer couponId, Double full, Double minus, Date startDate, Date endDate, String couponName) {
+    private Integer amount;
+
+    public Coupon(Integer couponId, Double full, Double minus, Date startDate, Date endDate, String couponName, Integer amount) {
         this.couponId = couponId;
         this.full = full;
         this.minus = minus;
         this.startDate = startDate;
         this.endDate = endDate;
         this.couponName = couponName;
+        this.amount = amount;
     }
 
     public Coupon() {
@@ -74,5 +77,13 @@ public class Coupon {
 
     public void setCouponName(String couponName) {
         this.couponName = couponName == null ? null : couponName.trim();
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 }

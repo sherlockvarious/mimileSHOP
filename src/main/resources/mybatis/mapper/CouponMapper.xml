@@ -9,6 +9,7 @@
       <arg column="start_date" javaType="java.util.Date" jdbcType="DATE" />
       <arg column="end_date" javaType="java.util.Date" jdbcType="DATE" />
       <arg column="coupon_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="amount" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    coupon_id, full, minus, start_date, end_date, coupon_name
+    coupon_id, full, minus, start_date, end_date, coupon_name, amount
   </sql>
   <select id="selectByExample" parameterType="edu.scdx.demo.entity.CouponExample" resultMap="BaseResultMap">
     select
@@ -104,11 +105,11 @@
   </delete>
   <insert id="insert" parameterType="edu.scdx.demo.entity.Coupon">
     insert into coupon (coupon_id, full, minus, 
-      start_date, end_date, coupon_name
-      )
+      start_date, end_date, coupon_name, 
+      amount)
     values (#{couponId,jdbcType=INTEGER}, #{full,jdbcType=DOUBLE}, #{minus,jdbcType=DOUBLE}, 
-      #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{couponName,jdbcType=VARCHAR}
-      )
+      #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{couponName,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="edu.scdx.demo.entity.Coupon">
     insert into coupon
@@ -131,6 +132,9 @@
       <if test="couponName != null">
         coupon_name,
       </if>
+      <if test="amount != null">
+        amount,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="couponId != null">
@@ -150,6 +154,9 @@
       </if>
       <if test="couponName != null">
         #{couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -180,6 +187,9 @@
       <if test="record.couponName != null">
         coupon_name = #{record.couponName,jdbcType=VARCHAR},
       </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -192,7 +202,8 @@
       minus = #{record.minus,jdbcType=DOUBLE},
       start_date = #{record.startDate,jdbcType=DATE},
       end_date = #{record.endDate,jdbcType=DATE},
-      coupon_name = #{record.couponName,jdbcType=VARCHAR}
+      coupon_name = #{record.couponName,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -215,6 +226,9 @@
       <if test="couponName != null">
         coupon_name = #{couponName,jdbcType=VARCHAR},
       </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
     </set>
     where coupon_id = #{couponId,jdbcType=INTEGER}
   </update>
@@ -224,7 +238,8 @@
       minus = #{minus,jdbcType=DOUBLE},
       start_date = #{startDate,jdbcType=DATE},
       end_date = #{endDate,jdbcType=DATE},
-      coupon_name = #{couponName,jdbcType=VARCHAR}
+      coupon_name = #{couponName,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=INTEGER}
     where coupon_id = #{couponId,jdbcType=INTEGER}
   </update>
 </mapper>
