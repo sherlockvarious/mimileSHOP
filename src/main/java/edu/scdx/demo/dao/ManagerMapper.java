@@ -1,11 +1,12 @@
 package edu.scdx.demo.dao;
 
+import edu.scdx.demo.dao.extend.ManagerMapperExtend;
 import edu.scdx.demo.entity.Manager;
 import edu.scdx.demo.entity.ManagerExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface ManagerMapper {
+public interface ManagerMapper extends ManagerMapperExtend {
     long countByExample(ManagerExample example);
 
     int deleteByExample(ManagerExample example);

@@ -1,8 +1,6 @@
 package edu.scdx.demo.controller;
 
-import com.github.pagehelper.PageInfo;
 import edu.scdx.demo.entity.Goods;
-import edu.scdx.demo.entity.Order;
 import edu.scdx.demo.service.GoodService;
 import edu.scdx.demo.service.ManagerService;
 import edu.scdx.demo.utils.Result;
