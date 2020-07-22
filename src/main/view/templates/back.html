@@ -166,6 +166,8 @@
         layer.confirm('确认要退出吗？', {
             btn : [ '确定', '取消' ]//按钮
         }, function(index) {
+            localStorage.removeItem('managerId');
+            localStorage.removeItem('managerName');
             window.location.href='login-manager.html';
         });
     });
