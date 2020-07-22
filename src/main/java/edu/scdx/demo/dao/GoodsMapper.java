@@ -27,4 +27,6 @@ public interface GoodsMapper {
     int updateByPrimaryKeySelective(Goods record);
 
     int updateByPrimaryKey(Goods record);
+
+    void deleteBooksByIds(@Param("ids") List<Integer> ids);
 }
