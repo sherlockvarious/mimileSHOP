@@ -10,6 +10,8 @@ import edu.scdx.demo.entity.Orders;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -33,6 +35,13 @@ public class ManagerServiceImpl implements ManagerService{
 
         PageHelper.startPage(page,limit);
         List<Orders> orders = ordersMapper.selectSendedOrder();
+        Iterator<Orders> iterator = orders.iterator();
+
+        while (iterator.hasNext()){
+            Orders it = iterator.next();
+            Date date = it.getCreationTime();
+
+        }
         return  new PageInfo<>(orders);
 
     }

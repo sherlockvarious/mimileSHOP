@@ -1,11 +1,12 @@
 package edu.scdx.demo.dao;
 
+import edu.scdx.demo.dao.extend.OrdersMapperExtend;
 import edu.scdx.demo.entity.Orders;
 import edu.scdx.demo.entity.OrdersExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface OrdersMapper {
+public interface OrdersMapper extends OrdersMapperExtend {
     long countByExample(OrdersExample example);
 
     int deleteByExample(OrdersExample example);

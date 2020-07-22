@@ -13,6 +13,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import javax.annotation.Resource;
+import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -100,7 +101,7 @@ class DemoApplicationTests {
     @Test
     void insertOrder(){
 
-        for (int i = 0; i < 5 ; i++) {
+        for (int i = 0; i < 50 ; i++) {
             Date date = new Date();
             Orders order = new Orders();
             order.setUserId(52);
@@ -109,6 +110,7 @@ class DemoApplicationTests {
             order.setDeliveryTime(date);
             order.setCreationTime(date);
             order.setPayTime(date);
+            order.setReceivingTime(date);
 
             ordersMapper.insertSelective(order);
         }

@@ -22,7 +22,6 @@
         select  order_id, orders.user_id, orders.goods_id, creation_time, pay_time, delivery_time, receiving_time,
     money_of_goods, money_of_delivery, order_points, coupon_id,nick_name,goods_name
         from user ,orders, goods
-        where receiving_time is null
-        and delivery_time is not null
+        where delivery_time is not null
     </select>
 </mapper>
