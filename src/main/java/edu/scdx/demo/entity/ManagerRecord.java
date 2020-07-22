@@ -15,19 +15,6 @@ public class ManagerRecord {
 
     private Integer goodsId;
 
-    public ManagerRecord(Integer recordId, Integer managerId, String detail, Date time, Integer orderId, Integer goodsId) {
-        this.recordId = recordId;
-        this.managerId = managerId;
-        this.detail = detail;
-        this.time = time;
-        this.orderId = orderId;
-        this.goodsId = goodsId;
-    }
-
-    public ManagerRecord() {
-        super();
-    }
-
     public Integer getRecordId() {
         return recordId;
     }

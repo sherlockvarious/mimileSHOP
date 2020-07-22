@@ -25,25 +25,6 @@ public class Goods {
 
     private Integer count;
 
-    public Goods(Integer goodsId, String typeName, String brand, String goodsName, String goodsPic, Integer goodsDetail, String goodsOrigin, Double oldPrice, Double price, Integer goodsOrdernum, Integer goodsHits, Integer count) {
-        this.goodsId = goodsId;
-        this.typeName = typeName;
-        this.brand = brand;
-        this.goodsName = goodsName;
-        this.goodsPic = goodsPic;
-        this.goodsDetail = goodsDetail;
-        this.goodsOrigin = goodsOrigin;
-        this.oldPrice = oldPrice;
-        this.price = price;
-        this.goodsOrdernum = goodsOrdernum;
-        this.goodsHits = goodsHits;
-        this.count = count;
-    }
-
-    public Goods() {
-        super();
-    }
-
     public Integer getGoodsId() {
         return goodsId;
     }

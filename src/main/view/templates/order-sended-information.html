@@ -20,7 +20,7 @@
 
         table.render({
             elem: '#test'
-            ,url:''//TODO:url
+            ,url:'/manager/check/sendedOrder'//TODO:url
             ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                 title: '提示'
@@ -32,12 +32,12 @@
             ,height: 600
             ,cols: [[
                 //TODO：修改field中的变量名，现在写的变量名是测试时候文件的变量名
-                {field:'id', title:'订单ID',fixed: 'left', unresize: true, sort: true}
-                ,{field:'username', title:'用户ID'}
-                ,{field:'email', title:'商品ID'}
-                ,{field:'sex', title:'创建时间', sort: true}
-                ,{field:'city', title:'支付时间', sort: true}
-                ,{field:'sign', title:'发货时间', sort: true}
+                {field:'orderId', title:'订单ID',fixed: 'left', unresize: true, sort: true}
+                ,{field:'nickName', title:'用户名'}
+                ,{field:'goodsName', title:'商品名'}
+                ,{field:'creationTime', title:'创建时间', sort: true}
+                ,{field:'payTime', title:'支付时间', sort: true}
+                ,{field:'deliveryTime', title:'发货时间', sort: true}
                 ,{field:'experience', title:'收货时间', sort: true}
                 ,{field:'ip', title:'商品价格'}
                 ,{field:'logins', title:'运费价格'}

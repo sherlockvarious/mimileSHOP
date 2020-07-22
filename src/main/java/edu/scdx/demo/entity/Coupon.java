@@ -17,20 +17,6 @@ public class Coupon {
 
     private Integer amount;
 
-    public Coupon(Integer couponId, Double full, Double minus, Date startDate, Date endDate, String couponName, Integer amount) {
-        this.couponId = couponId;
-        this.full = full;
-        this.minus = minus;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.couponName = couponName;
-        this.amount = amount;
-    }
-
-    public Coupon() {
-        super();
-    }
-
     public Integer getCouponId() {
         return couponId;
     }

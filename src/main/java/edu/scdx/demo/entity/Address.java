@@ -21,23 +21,6 @@ public class Address {
 
     private byte[] name;
 
-    public Address(Integer addressId, Integer userId, String phone, String country, String province, String city, String district, String detail, Boolean isDefault, byte[] name) {
-        this.addressId = addressId;
-        this.userId = userId;
-        this.phone = phone;
-        this.country = country;
-        this.province = province;
-        this.city = city;
-        this.district = district;
-        this.detail = detail;
-        this.isDefault = isDefault;
-        this.name = name;
-    }
-
-    public Address() {
-        super();
-    }
-
     public Integer getAddressId() {
         return addressId;
     }

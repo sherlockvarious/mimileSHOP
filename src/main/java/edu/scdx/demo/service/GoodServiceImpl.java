@@ -14,6 +14,7 @@ public class GoodServiceImpl implements GoodService{
     @Resource
     GoodsMapper goodsMapper;
 
+    @Override
     public PageInfo<Goods> findGoods(int pageNo, int pageSize) {
         PageHelper.startPage(pageNo,pageSize);
         List<Goods> goods = goodsMapper.selectByExample(null);
@@ -28,6 +29,6 @@ public class GoodServiceImpl implements GoodService{
 
     @Override
     public void deleteGoodsByIds(List<Integer> ids) {
-        goodsMapper.deleteBooksByIds(ids);
+
     }
 }

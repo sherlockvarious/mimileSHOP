@@ -1,8 +1,10 @@
 package edu.scdx.demo.entity;
 
+import edu.scdx.demo.entity.extend.ManagerExtend;
+
 import java.util.Date;
 
-public class Manager {
+public class Manager extends ManagerExtend {
     private Integer managerId;
 
     private String name;
@@ -12,18 +14,6 @@ public class Manager {
     private Date lastLoginTime;
 
     private String lastLoginIp;
-
-    public Manager(Integer managerId, String name, String password, Date lastLoginTime, String lastLoginIp) {
-        this.managerId = managerId;
-        this.name = name;
-        this.password = password;
-        this.lastLoginTime = lastLoginTime;
-        this.lastLoginIp = lastLoginIp;
-    }
-
-    public Manager() {
-        super();
-    }
 
     public Integer getManagerId() {
         return managerId;

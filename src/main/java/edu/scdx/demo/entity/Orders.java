@@ -1,10 +1,8 @@
 package edu.scdx.demo.entity;
 
-import edu.scdx.demo.entity.extend.OrderExtend;
-
 import java.util.Date;
 
-public class Order extends OrderExtend {
+public class Orders {
     private Integer orderId;
 
     private Integer userId;

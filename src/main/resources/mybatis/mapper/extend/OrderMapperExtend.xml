@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.scdx.demo.dao.OrderMapper">
+
+    <resultMap id="myBaseResultMap" type="edu.scdx.demo.entity.Order">
+        <id column="order_id" jdbcType="INTEGER" property="orderId" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+        <result column="creation_time" jdbcType="TIMESTAMP" property="creationTime" />
+        <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+        <result column="delivery_time" jdbcType="TIMESTAMP" property="deliveryTime" />
+        <result column="receiving_time" jdbcType="TIMESTAMP" property="receivingTime" />
+        <result column="money_of_goods" jdbcType="DOUBLE" property="moneyOfGoods" />
+        <result column="money_of_delivery" jdbcType="DOUBLE" property="moneyOfDelivery" />
+        <result column="order_points" jdbcType="INTEGER" property="orderPoints" />
+        <result column="coupon_id" jdbcType="INTEGER" property="couponId" />
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+    </resultMap>
+
+    <select id="selectSendedOrder" resultMap="myBaseResultMap">
+        select  order_id, orders.user_id, orders.goods_id, creation_time, pay_time, delivery_time, receiving_time,
+    money_of_goods, money_of_delivery, order_points, coupon_id,nick_name,goods_name
+        from user ,orders, goods
+        where receiving_time is null
+        and delivery_time is not null
+    </select>
+</mapper>

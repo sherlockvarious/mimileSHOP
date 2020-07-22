@@ -27,25 +27,6 @@ public class User {
 
     private Integer getCouponId;
 
-    public User(Integer userId, String nickName, String realName, String phone, String password, Date lastLoginTime, String lastLoginIp, String email, Boolean sex, Double accountBalance, Integer points, Integer getCouponId) {
-        this.userId = userId;
-        this.nickName = nickName;
-        this.realName = realName;
-        this.phone = phone;
-        this.password = password;
-        this.lastLoginTime = lastLoginTime;
-        this.lastLoginIp = lastLoginIp;
-        this.email = email;
-        this.sex = sex;
-        this.accountBalance = accountBalance;
-        this.points = points;
-        this.getCouponId = getCouponId;
-    }
-
-    public User() {
-        super();
-    }
-
     public Integer getUserId() {
         return userId;
     }

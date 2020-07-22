@@ -5,15 +5,6 @@ public class TypeKey {
 
     private String typeName;
 
-    public TypeKey(Integer typeId, String typeName) {
-        this.typeId = typeId;
-        this.typeName = typeName;
-    }
-
-    public TypeKey() {
-        super();
-    }
-
     public Integer getTypeId() {
         return typeId;
     }
