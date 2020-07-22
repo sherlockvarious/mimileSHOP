@@ -9,4 +9,6 @@ public interface GoodService {
     public void deleteGoodById(Goods good);
     void deleteGoodsByIds(List<Integer> ids);
     public boolean insertGoods(Goods good);
+    public void updateGood(Goods good);
+    public Goods getGood(Integer Goodsid);
 }

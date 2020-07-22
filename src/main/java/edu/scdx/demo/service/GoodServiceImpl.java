@@ -37,6 +37,24 @@ public class GoodServiceImpl implements GoodService{
             return true;
         }
         return false;
-
+    }
+    /**
+     * @Describe    更新商品信息
+     * @param       good
+     * @return      void
+     */
+    @Override
+    public void updateGood(Goods good) {
+        goodsMapper.updateByPrimaryKeySelective(good);
+    }
+    /**
+     * @Describe    根据id 查询商品
+     * @param       id
+     * @return      Product
+     */
+    @Override
+    public Goods getGood(Integer id) {
+        Goods good = goodsMapper.selectByPrimaryKey(id);
+        return good;
     }
 }

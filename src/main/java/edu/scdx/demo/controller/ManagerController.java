@@ -41,7 +41,7 @@ public class ManagerController {
         return Result.success(good.getGoodsId());
     }
 
-    @RequestMapping("/user")
+    @RequestMapping("/insertgood")
     @ResponseBody
     public Object insertGoods(Goods good) {
         goodService.insertGoods(good);
@@ -55,6 +55,19 @@ public class ManagerController {
         return Result.success();
     }
 
+    @DeleteMapping("/updategood")
+    @ResponseBody
+    public Object updateGoods(@RequestBody Goods good){
+        goodService.updateGood(good);
+        return Result.success();
+    }
+
+    @DeleteMapping("/searchgood")
+    @ResponseBody
+    public Object getGood(@RequestBody int Goodsid){
+        Goods good = goodService.getGood(Goodsid);
+        return Result.success(good);
+    }
     @RequestMapping("/check/sendedOrder")
     @ResponseBody
     public Object checkSendedOrder(@RequestParam(defaultValue = "1") int page,  @RequestParam(defaultValue = "10")int limit){
