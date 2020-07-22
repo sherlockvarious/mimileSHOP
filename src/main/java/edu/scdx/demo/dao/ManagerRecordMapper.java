@@ -1,12 +1,11 @@
 package edu.scdx.demo.dao;
 
-import edu.scdx.demo.dao.extend.OrderMapperExtend;
 import edu.scdx.demo.entity.ManagerRecord;
 import edu.scdx.demo.entity.ManagerRecordExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface ManagerRecordMapper extends OrderMapperExtend {
+public interface ManagerRecordMapper {
     long countByExample(ManagerRecordExample example);
 
     int deleteByExample(ManagerRecordExample example);

@@ -6,7 +6,7 @@ package edu.scdx.demo.entity.extend;
  * @school SiChuan University
  */
 
-public class OrderExtend {
+public class OrdersExtend {
     private String nickName;
     private String goodsName;
 

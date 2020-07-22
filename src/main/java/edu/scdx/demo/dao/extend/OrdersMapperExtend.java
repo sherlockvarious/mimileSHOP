@@ -1,6 +1,6 @@
 package edu.scdx.demo.dao.extend;
 
-import edu.scdx.demo.entity.Order;
+import edu.scdx.demo.entity.Orders;
 
 import java.util.List;
 
@@ -10,12 +10,12 @@ import java.util.List;
  * @school SiChuan University
  */
 
-public interface OrderMapperExtend {
+public interface OrdersMapperExtend {
 
     /**
      * 查询已发货订单
      * @return
      */
-    List<Order> selectSendedOrder();
+    List<Orders> selectSendedOrder();
 
 }

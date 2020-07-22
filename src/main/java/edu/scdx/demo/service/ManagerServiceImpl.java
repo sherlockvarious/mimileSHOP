@@ -2,13 +2,11 @@ package edu.scdx.demo.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.sun.org.apache.xpath.internal.operations.Or;
 import edu.scdx.demo.dao.ManagerMapper;
-import edu.scdx.demo.dao.OrderMapper;
+import edu.scdx.demo.dao.OrdersMapper;
 import edu.scdx.demo.entity.Manager;
 import edu.scdx.demo.entity.ManagerExample;
-import edu.scdx.demo.entity.Order;
-import edu.scdx.demo.entity.OrderExample;
+import edu.scdx.demo.entity.Orders;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,7 +18,7 @@ public class ManagerServiceImpl implements ManagerService{
     private ManagerMapper managerMapper;
 
     @Resource
-    private OrderMapper orderMapper;
+    private OrdersMapper ordersMapper;
 
     @Override
     public Manager login(Manager manager) {
@@ -31,10 +29,10 @@ public class ManagerServiceImpl implements ManagerService{
     }
 
     @Override
-    public PageInfo<Order> checkSendedOrder(int page, int limit) {
+    public PageInfo<Orders> checkSendedOrder(int page, int limit) {
 
         PageHelper.startPage(page,limit);
-        List<Order> orders = orderMapper.selectSendedOrder();
+        List<Orders> orders = ordersMapper.selectSendedOrder();
         return  new PageInfo<>(orders);
 
     }

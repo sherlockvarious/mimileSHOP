@@ -1,6 +1,8 @@
 package edu.scdx.demo;
 
+import edu.scdx.demo.dao.OrdersMapper;
 import edu.scdx.demo.dao.UserMapper;
+import edu.scdx.demo.entity.Orders;
 import edu.scdx.demo.entity.User;
 import edu.scdx.demo.entity.UserExample;
 import org.junit.jupiter.api.Test;
@@ -11,6 +13,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -89,6 +92,27 @@ class DemoApplicationTests {
 
     @Test
     void register(){
+
+    }
+
+    @Resource
+    OrdersMapper ordersMapper;
+    @Test
+    void insertOrder(){
+
+        for (int i = 0; i < 5 ; i++) {
+            Date date = new Date();
+            Orders order = new Orders();
+            order.setUserId(52);
+            order.setGoodsId(1);
+
+            order.setDeliveryTime(date);
+            order.setCreationTime(date);
+            order.setPayTime(date);
+
+            ordersMapper.insertSelective(order);
+        }
+
 
     }
 
