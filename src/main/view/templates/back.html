@@ -7,35 +7,6 @@
     <link rel="stylesheet" href="/layui/css/layui.css" media="all">
     <script src="/jquery/jquery.js"></script>
     <script src="/layui/layui.js" charset="utf-8"></script>
-    <script>
-        function change(title) {
-            var url;
-            switch (title) {
-                case 'goods':
-                    url = "goods-information.html";
-                    break;
-                case 'addGoods':
-                    url = "product-add.html";
-                    break;
-                case 'ordersUnsend':
-                    url = "order-unsend-information.html";
-                    break;
-                case 'ordersSended':
-                    url = "order-sended-information.html";
-                    break;
-                case 'member':
-                    url = "manager-information.html";
-                    break;
-                case 'operation':
-                    url = "manager-operation.html";
-                    break;
-                case 'coupon':
-                    url = "coupon-information.html";
-                    break;
-            }
-            $('iframe').attr('src', url);
-        }
-    </script>
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -44,7 +15,7 @@
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
-                <a href="javascript:;">
+                <a href="javascript:;" id="manager">
                     管理员姓名
                 </a>
                 <dl class="layui-nav-child">
@@ -122,6 +93,39 @@
     });
 </script>
 <script>
+    $(function () {
+        var managerId = localStorage.getItem('managerId');
+        var managerName = localStorage.getItem('managerName');
+
+        $('#manager').text(managerName);
+    });
+    function change(title) {
+        var url;
+        switch (title) {
+            case 'goods':
+                url = "goods-information.html";
+                break;
+            case 'addGoods':
+                url = "product-add.html";
+                break;
+            case 'ordersUnsend':
+                url = "order-unsend-information.html";
+                break;
+            case 'ordersSended':
+                url = "order-sended-information.html";
+                break;
+            case 'member':
+                url = "manager-information.html";
+                break;
+            case 'operation':
+                url = "manager-operation.html";
+                break;
+            case 'coupon':
+                url = "coupon-information.html";
+                break;
+        }
+        $('iframe').attr('src', url);
+    }
     $("#modifyPsaaword").click(function () {
         layer.open({
             type: 1,
