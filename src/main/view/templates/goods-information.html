@@ -149,26 +149,26 @@
 
         table.render({
             elem: '#test'
-            , url: '/' //TODO：修改路径
+            , url: '/manager/getgoods' //TODO：修改路径
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , title: '商品信息表'
             , cellMinWidth: 80
             , cols: [[
                 //TODO:修改field中的变量名
-                {field: 'id', title: '商品ID', sort: true}
-                , {field: 'username', title: '商品名称'}
-                , {field: 'experience', title: '类型'}
-                , {field: 'logins', title: '品牌'}
-                , {field: 'src', title: '商品图片', templet: function(res){
-                        return '<img src="'+ res.src +'"</>'//TODO:这个位置src可能也需要修改
+                {field: 'goodsId', title: '商品ID', sort: true}
+                , {field: 'goodsName', title: '商品名称'}
+                , {field: 'typeName', title: '类型'}
+                , {field: 'brand', title: '品牌'}
+                , {field: 'goodsPic', title: '商品图片', templet: function(res){
+                        return '<img src="'+ res.goodsPic +'"</>'//TODO:这个位置src可能也需要修改
                     }}
-                , {field: 'joinTime', title: '商品详情'}
-                , {field: 'joinTime', title: '产地'}
-                , {field: 'joinTime', title: '原价'}
-                , {field: 'joinTime', title: '现价'}
-                , {field: 'joinTime', title: '下单量'}
-                , {field: 'joinTime', title: '点击数'}
-                , {field: 'joinTime', title: '库存'}
+                , {field: 'goodsDetail', title: '商品详情'}
+                , {field: 'goodsOrigin', title: '产地'}
+                , {field: 'oldPrice', title: '原价'}
+                , {field: 'price', title: '现价'}
+                , {field: 'goodsOrdernum', title: '下单量'}
+                , {field: 'goodsHits', title: '点击数'}
+                , {field: 'count', title: '库存'}
                 , {fixed: 'right', title: '操作', toolbar: '#barDemo'}
             ]]
             , page: true
@@ -196,11 +196,16 @@
             if (obj.event === 'del') {
                 layer.confirm('确定要删除此商品吗', function (index) {
                     //obj.del();
+                    //alert(data.goodsId);
                     $.ajax({
-                        type: "post",
-                        url: "", //TODO: add url
+                        type: "delete",
+                        url: "/manager/deletegood", //TODO: add url
                         contentType: "application/json",
-                        data: JSON.stringify({"id": data.id}),//TODO: modify param name
+                        data: JSON.stringify({"goodsId": data.goodsId}),//TODO: modify param name
+                        /*data: {
+                            //TODO:可能需要修改变量名
+                            goodsId: data.goodsId,
+                        },*/
                         //TODO:修改后端传过来的信息
                         success: function (msg) {
                             if (msg.success === true) {
@@ -214,7 +219,7 @@
                                     }
                                 )
                             } else {
-                                layer.msg(msg.message, {time: 700});
+                                layer.msg("删除失败", {time: 700});
                             }
                         }
                     });
