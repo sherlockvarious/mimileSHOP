@@ -31,4 +31,12 @@ public class GoodServiceImpl implements GoodService{
     public void deleteGoodsByIds(List<Integer> ids) {
 
     }
+    @Override
+    public boolean insertGoods(Goods good){
+        if (goodsMapper.insertSelective(good)==1){
+            return true;
+        }
+        return false;
+
+    }
 }

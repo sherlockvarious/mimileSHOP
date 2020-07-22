@@ -43,6 +43,13 @@ public class ManagerController {
         return Result.success(good.getGoodsId());
     }
 
+    @RequestMapping("/user")
+    @ResponseBody
+    public Object insertGoods(Goods good) {
+        goodService.insertGoods(good);
+        return Result.success(good.getGoodsId());
+    }
+
     @DeleteMapping("/deletegoods")
     @ResponseBody
     public Object deleteGoods(@RequestBody List<Integer> ids){
@@ -57,6 +64,7 @@ public class ManagerController {
         return Result.success(managerService.checkSendedOrder(page,limit),"成功接收数据",200);
 
     }
+
 }
 
 
