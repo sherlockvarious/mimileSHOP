@@ -19,6 +19,5 @@ public class ManagerServiceImpl implements ManagerService{
         managerExample.createCriteria().andManagerIdEqualTo(manager.getManagerId()).andPasswordEqualTo(manager.getPassword());
         List<Manager> managers = managerMapper.selectByExample(managerExample);
         return (managers.size()>0?managers.get(0):null);
-        //domain  entity  pojo
     }
 }

@@ -29,20 +29,19 @@ public class LoginController {
 
 
     @RequestMapping("/manager")
-    public String managerLogin(Manager manager) {
+    @ResponseBody
+    public Object managerLogin(Manager manager) {
         Manager managerInDB = managerService.login(manager);
         if (managerInDB == null) {
-            System.out.println("用户名不存在");
+            return Result.error("用户名不存在");
         } else {
             String passwordInDB = managerInDB.getPassword();
             if (passwordInDB.equals(manager.getPassword())) {
-                System.out.println("登录成功");
-                return "/login";
+                return Result.success(managerInDB);
             } else {
-                System.out.println("登录失败");
+                return Result.error("登录失败");
             }
         }
-        return "/index";
     }
 
 

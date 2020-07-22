@@ -322,4 +322,11 @@
       count = #{count,jdbcType=INTEGER}
     where goods_id = #{goodsId,jdbcType=INTEGER}
   </update>
+  <!-- 不是生成的代码 -->
+  <delete id="deleteGoodsByIds">
+    delete from goods where goodsid in
+    <foreach collection="ids" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </delete>
 </mapper>
