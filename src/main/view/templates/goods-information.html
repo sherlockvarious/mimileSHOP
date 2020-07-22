@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>商品管理</title>
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <script src="/jquery/jquery.js"></script>
+    <script src="/layui/layui.js" charset="utf-8"></script>
+    <script src="/js/area.js" type="text/javascript"></script>
+    <script src="/js/select.js" type="text/javascript"></script>
+</head>
+<body>
+<!--表格-->
+<table class="layui-hide" id="test" lay-filter="test"></table>
+<!-- 新增弹层-->
+<div class="site-text" style="margin: 5%; display: none" id="editWindow" target="test123">
+    <!--商品名输入框-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品名称</label>
+        <div class="layui-input-block">
+            <input id="goodsName" name="goodsName" class="layui-input" type="text" placeholder="在此处输入商品名称" autocomplete="off"
+                   lay-verify="title">
+        </div>
+    </div>
+    <!--品牌输入框和商品类型选择-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品品牌</label>
+        <div class="layui-input-inline">
+            <input id="goodsBrand" name="goodsBrand" class="layui-input" type="text" placeholder="在此处输入商品品牌"
+                   autocomplete="off"
+                   lay-verify="title">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">商品类型</label>
+            <div class="layui-input-inline">
+                <input id="goodsType" name="goodsType" class="layui-input" type="text" disabled="disabled" placeholder="在此处显示商品类型"
+                       autocomplete="off"
+                       lay-verify="title">
+            </div>
+        </div>
+        <form id="selectType" class="layui-form-item layui-inline">
+            <div class="layui-form">
+                <label class="layui-form-label">重选商品类型</label>
+                <div class="layui-input-inline">
+                    <select id="goodsTypeSelect" name="goodsTypeSelect" lay-filter="type">
+                        <option value="">请选择</option>
+                        <option value="1">测试类型</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">产地</label>
+        <div class="layui-input-block">
+            <input id="goodsOrigin" name="goodsOrigin" class="layui-input" type="text" disabled="disabled" placeholder="在此处显示产地" autocomplete="off"
+                   lay-verify="title">
+        </div>
+    </div>
+    <!--产地选择框-->
+    <form id="selectOrigin" class="layui-form-item layui-inline">
+        <div class="layui-form">
+            <label class="layui-form-label">重选产地</label>
+            <div class="layui-inline">
+                <select name="province" id="province" lay-verify="required" lay-search lay-filter="province">
+                    <option value="">请选择省</option>
+                </select>
+            </div>
+            <div class="layui-inline">
+                <select name="city" id="city" lay-verify="required" lay-search lay-filter="city">
+                    <option value="">请选择市</option>
+                </select>
+            </div>
+            <div class="layui-inline">
+                <select name="district" id="district" lay-verify="required" lay-search>
+                    <option value="">请选择县/区</option>
+                </select>
+            </div>
+        </div>
+    </form>
+    <!--这块是商品图片-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品图片</label>
+        <img id="image" class="image" style="height: 200px; width: 200px;"/>
+        <input id="imageFile" type="file" name="imageFile" accept="image/png,image/jpg,image/jpeg,image/bmp"/>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">商品详情</label>
+        <div class="layui-input-block">
+            <textarea id="goodsDetail" class="layui-textarea" placeholder="在此输入商品详细信息"></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">库存量</label>
+            <div class="layui-input-inline">
+                <input id="goodsNum" name="goodsNum" class="layui-input" type="text" placeholder="在此处输入入库量" autocomplete="off"
+                       lay-verify="title">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">价格</label>
+            <div class="layui-input-inline">
+                <input id="goodsPrice" name="goodsPrice" class="layui-input" type="text" placeholder="在此处输入商品价格"
+                       autocomplete="off"
+                       lay-verify="title">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script id="toolbarDemo" type="text/html">
+</script>
+
+<script id="barDemo" type="text/html">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script th:inline="none">
+    var imageData = "";
+    //图片加载
+    $("#imageFile").change(function () {
+        var file = this.files[0];
+        if (window.FileReader) {
+            var reader1 = new FileReader();
+            var reader2 = new FileReader();
+            reader1.readAsDataURL(file);
+            reader2.readAsBinaryString(file);
+            //监听文件读取结束后事件
+            reader1.onloadend = function (e) {
+                //e.target.result就是最后的路径地址
+                $("#image").attr("src", e.target.result);
+            };
+            reader2.onload = function (e) {
+                imgBinaryString = this.result;
+                imageData = imgBinaryString;
+            };
+        }
+    });
+    layui.use(['table', 'layer', 'form'], function () {
+        var table = layui.table;
+        var layer = layui.layer;
+
+        table.render({
+            elem: '#test'
+            , url: '/' //TODO：修改路径
+            , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , title: '商品信息表'
+            , cellMinWidth: 80
+            , cols: [[
+                //TODO:修改field中的变量名
+                {field: 'id', title: '商品ID', sort: true}
+                , {field: 'username', title: '商品名称'}
+                , {field: 'experience', title: '类型'}
+                , {field: 'logins', title: '品牌'}
+                , {field: 'src', title: '商品图片', templet: function(res){
+                        return '<img src="'+ res.src +'"</>'//TODO:这个位置src可能也需要修改
+                    }}
+                , {field: 'joinTime', title: '商品详情'}
+                , {field: 'joinTime', title: '产地'}
+                , {field: 'joinTime', title: '原价'}
+                , {field: 'joinTime', title: '现价'}
+                , {field: 'joinTime', title: '下单量'}
+                , {field: 'joinTime', title: '点击数'}
+                , {field: 'joinTime', title: '库存'}
+                , {fixed: 'right', title: '操作', toolbar: '#barDemo'}
+            ]]
+            , page: true
+            , height: 600
+            ,response: {
+                statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+            }
+            ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
+
+                //alert(JSON.parse(res));
+                return {
+                    //TODO:修改接口变量
+                    "code": res.code, //解析接口状态
+                    "msg": res.message, //解析提示文本
+                    "count": res.data.total, //解析数据长度
+                    "data": res.data.list //解析数据列表
+                };
+            }
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            //console.log(obj)
+            if (obj.event === 'del') {
+                layer.confirm('确定要删除此商品吗', function (index) {
+                    //obj.del();
+                    $.ajax({
+                        type: "post",
+                        url: "", //TODO: add url
+                        contentType: "application/json",
+                        data: JSON.stringify({"id": data.id}),//TODO: modify param name
+                        //TODO:修改后端传过来的信息
+                        success: function (msg) {
+                            if (msg.success === true) {
+                                layer.msg("删除成功", {time: 700});
+                                table.reload(
+                                    'test',
+                                    {
+                                        page: {
+                                            curr: $(".layui-laypage-em").next().html()
+                                        }
+                                    }
+                                )
+                            } else {
+                                layer.msg(msg.message, {time: 700});
+                            }
+                        }
+                    });
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                //TODO：这个部分可能也要修改data里的变量名
+                $("#goodsName").val(data.username);
+                $("#goodsBrand").val(data.username);
+                $("#goodsType").val('测试类型');
+                $("#image").attr("src", data.src);
+                $("#goodsOrigin").val(data.joinTime);
+                $("#goodsDetail").val(data.joinTime);
+                $("#goodsNum").val(data.joinTime);
+                $("#goodsPrice").val(data.joinTime);
+                layer.open({
+                    type: 1,
+                    title: "编辑",
+                    area: ['50%', '50%'],
+                    btn: ['确定', '取消'],
+                    area: ['1000px', '400px'],
+                    content: $("#editWindow"),
+                    yes: function (index, layero) {
+                        var goodsName = $("#goodsName").val();
+                        var goodsBrand = $("#goodsBrand").val();
+                        var goodsType = $("#goodsType").val();
+                        var goodsTypeNew = $("#goodsTypeSelect option:selected").text();
+                        var goodsDetail = $("#goodsDetail").val();
+                        var goodsProvince = $("#province").val();
+                        var goodsCity = $("#city").val();
+                        var goodsDistinct = $("#district").val();
+                        var goodsNum = $("#goodsNum").val();
+                        var goodsPrice = $("#goodsPrice").val();
+                        var goodsOrigin = $("#goodsOrigin").val();
+                        var goodsOriginNew = "";
+                        var re = /^[1-9]+[0-9]*]*$/;
+                        alert(goodsName + '\n' + goodsBrand + '\n' + goodsType + '\n'+ goodsTypeNew + '\n' + goodsDetail + '\n' + goodsProvince + '\n' + goodsCity + '\n' + goodsDistinct + '\n' + goodsNum + '\n' + goodsPrice + '\n'+ goodsOrigin + '\n' + imageData);
+                        if (goodsTypeNew == "请选择") {
+                            goodsTypeNew = "";
+                        }
+                        if (goodsProvince != 0 && goodsProvince != "") {
+                            goodsOriginNew = goodsOriginNew + goodsProvince;
+                            goodsOrigin = goodsOriginNew;
+                            if (goodsCity != 0) {
+                                goodsOriginNew = goodsOriginNew + goodsCity;
+                                goodsOrigin = goodsOriginNew;
+                                if (goodsDistinct != 0) {
+                                    goodsOriginNew = goodsOriginNew + goodsDistinct;
+                                    goodsOrigin = goodsOriginNew;
+                                }
+                            }
+                        }
+                        if (goodsName == "") {
+                            layer.msg("请输入商品名称", {time: 700});
+                        } else if (goodsNum == "") {
+                            layer.msg("请输入库存量", {time: 700});
+                        } else if (!re.test(goodsNum)) {
+                            layer.msg("库存量请输入正整数", {time: 700});
+                        } else if (goodsPrice == "") {
+                            layer.msg("请输入价格", {time: 700});
+                        } else if (isNaN(goodsPrice)) {
+                            layer.msg("价格请输入数字", {time: 700});
+                        } else {
+                            $.ajax({
+                                url: "", //TODO: url
+                                type: "post",
+                                //TODO: param name
+                                data: {
+                                    goodsID:data.id,
+                                    goodsName: goodsName,
+                                    goodsBrand: goodsBrand,
+                                    goodsType: goodsType,
+                                    goodsDetail: goodsDetail,
+                                    goodsOrigin:goodsOrigin,
+                                    goodsNum: goodsNum,
+                                    goodsPrice: goodsPrice,
+                                    imageData: imgBinaryString
+                                },
+                                success: function (msg) {
+                                    if (msg.success === true) {
+                                        layer.msg(msg.message, {time: 700});
+                                        layer.close(index);
+                                        table.reload(
+                                            'test',
+                                            {
+                                                page: {
+                                                    curr: $(".layui-laypage-em").next().html()
+                                                }
+                                            }
+                                        )
+                                    } else {
+                                        layer.msg(msg.message, {time: 700});
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+</html>

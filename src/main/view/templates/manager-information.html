@@ -76,6 +76,7 @@
         table.on('toolbar(test)', function(obj){
             switch(obj.event){
                 case 'addManager':
+                    empty();
                     layer.open({
                         type: 1,
                         title:"新增",
@@ -145,5 +146,9 @@
             }
         });
     });
+    function empty() {
+        $("#name").val("");
+        $("#password").val("");
+    }
 </script>
 </html>
