@@ -2,6 +2,7 @@ package edu.scdx.demo.controller;
 
 import edu.scdx.demo.entity.Coupon;
 import edu.scdx.demo.entity.Goods;
+import edu.scdx.demo.entity.Manager;
 import edu.scdx.demo.service.GoodService;
 import edu.scdx.demo.service.ManagerService;
 import edu.scdx.demo.utils.Result;
@@ -158,6 +159,41 @@ public class ManagerController {
 
         return managerService.deleteCoupon(couponId)?Result.success():Result.error("删除失败");
 
+    }
+
+    @GetMapping("/getmanagers")
+    @ResponseBody
+    /** 对商品的管理*/
+
+    public Object getManagers(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10")int limit){
+        return Result.success(managerService.findManagers(page,limit),"分页 查询good 对象");
+    }
+
+    @GetMapping("/listmanagers")
+    public String toManagerListPage() {
+
+        return "/views/manager/manager-list";
+    }
+
+    @DeleteMapping("/deletemanager")
+    @ResponseBody
+    public Object deleteManager(@RequestBody int managerId) {
+        managerService.deleteManager(managerId);
+        return Result.success();
+    }
+
+    @RequestMapping("/changePassword")
+    @ResponseBody
+    public Object changeManagerPassword(@RequestParam int managerId,@RequestParam String newPassword) {
+        managerService.changeManagerPassword(managerId,newPassword);
+        return Result.success();
+    }
+
+    @DeleteMapping("/addmanager")
+    @ResponseBody
+    public Object addManager(@RequestBody Manager manager) {
+        managerService.addManager(manager);
+        return Result.success(manager.getManagerId());
     }
 }
 

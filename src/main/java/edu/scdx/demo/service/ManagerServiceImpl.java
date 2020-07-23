@@ -143,13 +143,6 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
-    public PageInfo<Manager> findManager(int pageNo, int pageSize) {
-        PageHelper.startPage(pageNo,pageSize);
-        List<Manager> managers = managerMapper.selectByExample(null);
-        return new PageInfo<>(managers);
-    }
-
-    @Override
     public boolean deleteManager(int managerId){
         try {
             managerMapper.deleteByPrimaryKey(managerId);
@@ -179,10 +172,5 @@ public class ManagerServiceImpl implements ManagerService {
         PageHelper.startPage(pageNo,pageSize);
         List<Manager> manager = managerMapper.selectByExample(null);
         return new PageInfo<>(manager);
-    }
-
-    @Override
-    public void deleteManagerById(Manager manager) {
-        managerMapper.deleteByPrimaryKey(manager.getManagerId());
     }
 }

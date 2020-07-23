@@ -25,13 +25,10 @@ public interface ManagerService {
 
     public boolean addManager(Manager manager);
 
-    public PageInfo<Manager> findManager(int pageNo, int pageSize);
-
     public boolean deleteManager(int managerId);
 
     public boolean changeManagerPassword(int managerId,String newPassword);
 
     public PageInfo<Manager> findManagers(int pageNo, int pageSize);
 
-    public void deleteManagerById(Manager manager);
 }
