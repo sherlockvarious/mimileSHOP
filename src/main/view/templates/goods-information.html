@@ -8,6 +8,12 @@
     <script src="/layui/layui.js" charset="utf-8"></script>
     <script src="/js/area.js" type="text/javascript"></script>
     <script src="/js/select.js" type="text/javascript"></script>
+    <style type="text/css">
+        .layui-table-cell {
+            height: 100%;
+            max-width: 100%;
+        }
+    </style>
 </head>
 <body>
 <!--表格-->
@@ -169,7 +175,7 @@
                 , {field: 'goodsOrdernum', title: '下单量'}
                 , {field: 'goodsHits', title: '点击数'}
                 , {field: 'count', title: '库存'}
-                , {fixed: 'right', title: '操作', toolbar: '#barDemo'}
+                , {title: '操作', toolbar: '#barDemo'}
             ]]
             , page: true
             , height: 600
@@ -227,14 +233,14 @@
                 });
             } else if (obj.event === 'edit') {
                 //TODO：这个部分可能也要修改data里的变量名
-                $("#goodsName").val(data.username);
-                $("#goodsBrand").val(data.username);
-                $("#goodsType").val('测试类型');
-                $("#image").attr("src", data.src);
-                $("#goodsOrigin").val(data.joinTime);
-                $("#goodsDetail").val(data.joinTime);
-                $("#goodsNum").val(data.joinTime);
-                $("#goodsPrice").val(data.joinTime);
+                $("#goodsName").val(data.goodsName);
+                $("#goodsBrand").val(data.brand);
+                $("#goodsType").val(data.typeName);
+                $("#image").attr("src", data.goodsPic);
+                $("#goodsOrigin").val(data.goodsOrigin);
+                $("#goodsDetail").val(data.goodsDetail);
+                $("#goodsNum").val(data.count);
+                $("#goodsPrice").val(data.price);
                 layer.open({
                     type: 1,
                     title: "编辑",
@@ -284,10 +290,11 @@
                             layer.msg("价格请输入数字", {time: 700});
                         } else {
                             $.ajax({
-                                url: "", //TODO: url
+                                url: "/manager/updategood", //TODO: url
                                 type: "post",
+                                contentType: "application/json",
                                 //TODO: param name
-                                data: {
+                                data: JSON.stringify({
                                     goodsID:data.id,
                                     goodsName: goodsName,
                                     goodsBrand: goodsBrand,
@@ -296,8 +303,8 @@
                                     goodsOrigin:goodsOrigin,
                                     goodsNum: goodsNum,
                                     goodsPrice: goodsPrice,
-                                    imageData: imgBinaryString
-                                },
+                                    goodsPic: imgBinaryString
+                                }),
                                 success: function (msg) {
                                     if (msg.success === true) {
                                         layer.msg(msg.message, {time: 700});
