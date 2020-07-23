@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import edu.scdx.demo.dao.GoodsMapper;
 import edu.scdx.demo.entity.Goods;
+import edu.scdx.demo.entity.GoodsExample;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
@@ -56,5 +57,43 @@ public class GoodServiceImpl implements GoodService{
     public Goods getGood(Integer id) {
         Goods good = goodsMapper.selectByPrimaryKey(id);
         return good;
+    }
+    /**
+     * @Describe    关键字搜索产品
+     * @param       keyWord
+     * @return      List<Product>
+     */
+    @Override
+    public List<Goods> searchByKeyword(String keyWord) {
+        // 通过关键字查询商品
+        GoodsExample example = new GoodsExample();
+        example.createCriteria().andGoodsNameLike("%" + keyWord + "%");
+        List<Goods> goods = goodsMapper.selectByExample(example);
+        return goods;
+    }
+    /**
+     * @Describe    类型筛选产品
+     * @param       type
+     * @return      List<Product>
+     */
+    @Override
+    public List<Goods> searchByType(String type) {
+        GoodsExample example = new GoodsExample();
+        example.createCriteria().andTypeNameEqualTo(type);
+        List<Goods> goods = goodsMapper.selectByExample(example);
+        return goods;
+    }
+
+    /**
+     * @Describe    品牌筛选产品
+     * @param       brand
+     * @return      List<Product>
+     */
+    @Override
+    public List<Goods> searchByBrand(String brand) {
+        GoodsExample example = new GoodsExample();
+        example.createCriteria().andBrandEqualTo(brand);
+        List<Goods> goods = goodsMapper.selectByExample(example);
+        return goods;
     }
 }

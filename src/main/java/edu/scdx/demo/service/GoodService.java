@@ -11,4 +11,7 @@ public interface GoodService {
     public boolean insertGoods(Goods good);
     public void updateGood(Goods good);
     public Goods getGood(Integer Goodsid);
+    List<Goods> searchByKeyword(String keyWord);
+    List<Goods> searchByType(String type);
+    List<Goods> searchByBrand(String brand);
 }
