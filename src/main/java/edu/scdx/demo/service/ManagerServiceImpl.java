@@ -2,12 +2,10 @@ package edu.scdx.demo.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import edu.scdx.demo.dao.CouponMapper;
 import edu.scdx.demo.dao.ManagerMapper;
 import edu.scdx.demo.dao.OrdersMapper;
-import edu.scdx.demo.entity.Manager;
-import edu.scdx.demo.entity.ManagerExample;
-import edu.scdx.demo.entity.Orders;
-import edu.scdx.demo.entity.OrdersExample;
+import edu.scdx.demo.entity.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,6 +19,24 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Resource
     private OrdersMapper ordersMapper;
+
+    @Resource
+    private CouponMapper couponMapper;
+
+    @Override
+    public PageInfo<Coupon> viewCoupon(int page, int limit) {
+        try {
+            PageHelper.startPage(page, limit);
+            List<Coupon> coupons = couponMapper.selectByExample(new CouponExample());
+
+
+            return new PageInfo<>(coupons);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     @Override
     public Manager login(Manager manager) {
