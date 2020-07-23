@@ -10,6 +10,8 @@ public class OrdersExtend {
     private String nickName;
     private String goodsName;
 
+
+
     public String getNickName() {
         return nickName;
     }

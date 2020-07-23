@@ -27,6 +27,23 @@ public class Orders extends OrdersExtend {
 
     private Integer couponId;
 
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "orderId=" + orderId +
+                ", userId=" + userId +
+                ", goodsId=" + goodsId +
+                ", creationTime=" + creationTime +
+                ", payTime=" + payTime +
+                ", deliveryTime=" + deliveryTime +
+                ", receivingTime=" + receivingTime +
+                ", moneyOfGoods=" + moneyOfGoods +
+                ", moneyOfDelivery=" + moneyOfDelivery +
+                ", orderPoints=" + orderPoints +
+                ", couponId=" + couponId +
+                '}';
+    }
+
     public Integer getOrderId() {
         return orderId;
     }

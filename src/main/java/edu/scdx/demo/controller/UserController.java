@@ -70,13 +70,13 @@ public class UserController {
     @ResponseBody
     /** 商品列表*/
     public Object getGoods(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10")int pageSize){
-        return Result.success(goodService.findGoods(pageNo,pageSize),"分页 查询good 对象");
+        return Result.success(goodService.findGoods(pageNo,pageSize));
     }
 
     @GetMapping("/showgoods")
     public String toGoodListPage(){
 
-        return "/views/good/showgood-list";
+        return "views/good/showgood-list";
     }
 
     @RequestMapping("/searchgood")

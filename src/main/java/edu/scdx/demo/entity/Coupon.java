@@ -17,6 +17,19 @@ public class Coupon {
 
     private Integer amount;
 
+    @Override
+    public String toString() {
+        return "Coupon{" +
+                "couponId=" + couponId +
+                ", full=" + full +
+                ", minus=" + minus +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", couponName='" + couponName + '\'' +
+                ", amount=" + amount +
+                '}';
+    }
+
     public Integer getCouponId() {
         return couponId;
     }

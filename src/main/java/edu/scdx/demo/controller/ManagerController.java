@@ -2,9 +2,12 @@ package edu.scdx.demo.controller;
 
 import edu.scdx.demo.entity.Coupon;
 import edu.scdx.demo.entity.Goods;
+import edu.scdx.demo.entity.ManagerRecord;
+import edu.scdx.demo.entity.Orders;
 import edu.scdx.demo.entity.Manager;
 import edu.scdx.demo.service.GoodService;
 import edu.scdx.demo.service.ManagerService;
+import edu.scdx.demo.service.RecordService;
 import edu.scdx.demo.utils.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ClassUtils;
@@ -12,7 +15,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.*;
+import java.util.Date;
 import java.util.List;
+
 
 @Controller
 @RequestMapping("/manager")
@@ -25,18 +30,21 @@ public class ManagerController {
     @Resource
     private ManagerService managerService;
 
+    @Resource
+    private RecordService recordService;
+
     @GetMapping("/getgoods")
     @ResponseBody
     /** 对商品的管理*/
-
     public Object getGoods(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10")int limit){
-        return Result.success(goodService.findGoods(page,limit),"分页 查询good 对象");
+        System.out.println("hello");
+        return Result.success(goodService.findGoods(page,limit));
     }
 
     @GetMapping("/listgoods")
     public String toGoodListPage() {
 
-        return "/views/good/good-list";
+        return "views/good/good-list";
     }
 
     @DeleteMapping("/deletegood")
@@ -48,7 +56,7 @@ public class ManagerController {
 
     @RequestMapping("/insertgood")
     @ResponseBody
-    public Object insertGoods(Goods good) {
+    public Object insertGoods(Goods good,int managerId) {
         if(good.getGoodsPic() != ""){
             String path = ClassUtils.getDefaultClassLoader().getResource("").getPath();
             File upload = new File(path+"/static/image/");
@@ -62,8 +70,24 @@ public class ManagerController {
                 e.printStackTrace();
             }
         }
+
+        //写入record
+        try {
+            String detail = "管理员"+managerId+"添加了商品:"+good.toString();
+
+            ManagerRecord record = new ManagerRecord();
+            record.setManagerId(managerId);
+            record.setDetail(detail);
+            record.setTime(new Date());
+
+            recordService.addRecord(record);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         goodService.insertGoods(good);
-        return Result.success(good.getGoodsId());
+        return Result.success();
     }
 
     public static void saveImage(InputStream ins, File file) throws IOException {
@@ -123,11 +147,23 @@ public class ManagerController {
     @ResponseBody
     public Object waitToSend(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int limit) {
         return Result.success(managerService.waitToSend(page, limit), "成功接收数据", 200);
+
     }
 
     @RequestMapping("/toDelivery")
     @ResponseBody
-    public Object toDelivery(int orderId) {
+    public Object toDelivery(int orderId,int managerId) {
+
+        Orders send = recordService.selectOrder(orderId);
+        String detail = "管理员"+managerId+"完成了发货"+"\n"+"订单详情"+send.toString();
+
+        ManagerRecord record = new ManagerRecord();
+        record.setManagerId(managerId);
+        record.setDetail(detail);
+        record.setTime(new Date());
+
+        recordService.addRecord(record);
+
         return managerService.toDelivery(orderId) ? Result.success() : Result.error("发货失败");
     }
 
@@ -139,7 +175,17 @@ public class ManagerController {
 
     @RequestMapping("/addCoupon")
     @ResponseBody
-    public Object addCoupon(Coupon coupon) {
+    public Object addCoupon(Coupon coupon,int managerId) {
+
+        String detail = "管理员"+managerId+"添加了优惠券:"+coupon.toString();
+
+        ManagerRecord record = new ManagerRecord();
+        record.setManagerId(managerId);
+        record.setDetail(detail);
+        record.setTime(new Date());
+
+        recordService.addRecord(record);
+
 
         return managerService.addCoupon(coupon) ? Result.success() : Result.error("添加失败");
 
@@ -147,7 +193,19 @@ public class ManagerController {
 
     @RequestMapping("/editCoupon")
     @ResponseBody
-    public Object editCoupon(Coupon coupon) {
+    public Object editCoupon(Coupon coupon,int managerId) {
+
+        Coupon old = recordService.selectCoupon(coupon);
+
+        String detail = "管理员"+managerId+"修改了优惠券:"+"修改前:"+old.toString()+"\n"+"修改后:"+coupon.toString();
+
+        ManagerRecord record = new ManagerRecord();
+        record.setManagerId(managerId);
+        record.setDetail(detail);
+        record.setTime(new Date());
+
+        recordService.addRecord(record);
+
 
         return managerService.editCoupon(coupon) ? Result.success() : Result.error("修改失败");
 
@@ -155,8 +213,19 @@ public class ManagerController {
 
     @RequestMapping("/deleteCoupon")
     @ResponseBody
-    public Object deleteCoupon(int couponId){
+    public Object deleteCoupon(int couponId,int managerId){
 
+
+        Coupon old = recordService.selectCouponByPrimarykey(couponId);
+
+        String detail = "管理员"+managerId+"删除了优惠券:"+old.toString();
+
+        ManagerRecord record = new ManagerRecord();
+        record.setManagerId(managerId);
+        record.setDetail(detail);
+        record.setTime(new Date());
+
+        recordService.addRecord(record);
         return managerService.deleteCoupon(couponId)?Result.success():Result.error("删除失败");
 
     }

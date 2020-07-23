@@ -170,10 +170,8 @@
         } else {
             //console.log(imgBinaryString);
             $.ajax({
-                url: "/manager/insertgood", //TODO: url
+                url: "/manager/insertgood",
                 type: "post",
-                //contentType: "application/json",
-                //TODO: param name
                 data: {
                     goodsName: goodsName,
                     brand: goodsBrand,
@@ -183,7 +181,8 @@
                     count: goodsNum,
                     oldPrice: goodsPrice,
                     price: goodsPrice,
-                    goodsPic: imageData
+                    goodsPic: imageData,
+                    managerId: localStorage.getItem('managerId')
                 },
                 success: function (data) {
                     if(data.success === true){

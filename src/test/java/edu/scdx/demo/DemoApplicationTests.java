@@ -108,7 +108,7 @@ class DemoApplicationTests {
             order.setUserId(52);
             order.setGoodsId(1);
 
-        //    order.setDeliveryTime(date);
+            order.setDeliveryTime(date);
             order.setCreationTime(date);
             order.setPayTime(date);
           //  order.setReceivingTime(date);
