@@ -48,16 +48,18 @@ public class ManagerController {
     @RequestMapping("/insertgood")
     @ResponseBody
     public Object insertGoods(Goods good) {
-        String path = ClassUtils.getDefaultClassLoader().getResource("").getPath();
-        File upload = new File(path+"/static/image/");
-        if(!upload.exists()) upload.mkdirs();
-        String filepath = path+"/static/image/"+good.getGoodsName()+".jpg";
-        File imgFile = new File(filepath);
-        try {
-            saveImage(new ByteArrayInputStream(good.getGoodsPic().getBytes("ISO-8859-1")), imgFile);
-            good.setGoodsPic( "/image/"+good.getGoodsName()+".jpg");
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(good.getGoodsPic() != ""){
+            String path = ClassUtils.getDefaultClassLoader().getResource("").getPath();
+            File upload = new File(path+"/static/image/");
+            if(!upload.exists()) upload.mkdirs();
+            String filepath = path+"/static/image/"+good.getGoodsName()+".jpg";
+            File imgFile = new File(filepath);
+            try {
+                saveImage(new ByteArrayInputStream(good.getGoodsPic().getBytes("ISO-8859-1")), imgFile);
+                good.setGoodsPic( "/image/"+good.getGoodsName()+".jpg");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         goodService.insertGoods(good);
         return Result.success(good.getGoodsId());

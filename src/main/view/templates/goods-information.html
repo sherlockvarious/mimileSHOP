@@ -208,10 +208,6 @@
                         url: "/manager/deletegood", //TODO: add url
                         contentType: "application/json",
                         data: JSON.stringify({"goodsId": data.goodsId}),//TODO: modify param name
-                        /*data: {
-                            //TODO:可能需要修改变量名
-                            goodsId: data.goodsId,
-                        },*/
                         //TODO:修改后端传过来的信息
                         success: function (msg) {
                             if (msg.success === true) {
@@ -295,7 +291,7 @@
                                 //contentType: "application/json",
                                 //TODO: param name
                                 data:{
-                                    goodsID:data.goodsId,
+                                    goodsId:data.goodsId,
                                     goodsName: goodsName,
                                     brand: goodsBrand,
                                     typeName: goodsType,
