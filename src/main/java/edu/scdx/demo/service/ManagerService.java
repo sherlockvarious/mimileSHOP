@@ -15,4 +15,8 @@ public interface ManagerService {
     public boolean toDelivery(int orderId);
 
     public PageInfo<Coupon> viewCoupon(int page, int limit);
+
+    public boolean addCoupon(Coupon coupon);
+
+    public boolean editCoupon(Coupon coupon);
 }

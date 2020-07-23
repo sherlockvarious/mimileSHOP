@@ -7,7 +7,7 @@
     <result column="brand" jdbcType="VARCHAR" property="brand" />
     <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
     <result column="goods_pic" jdbcType="VARCHAR" property="goodsPic" />
-    <result column="goods_detail" jdbcType="INTEGER" property="goodsDetail" />
+    <result column="goods_detail" jdbcType="VARCHAR" property="goodsDetail" />
     <result column="goods_origin" jdbcType="VARCHAR" property="goodsOrigin" />
     <result column="old_price" jdbcType="DOUBLE" property="oldPrice" />
     <result column="price" jdbcType="DOUBLE" property="price" />
@@ -114,7 +114,7 @@
       goods_ordernum, goods_hits, count
       )
     values (#{goodsId,jdbcType=INTEGER}, #{typeName,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, 
-      #{goodsName,jdbcType=VARCHAR}, #{goodsPic,jdbcType=VARCHAR}, #{goodsDetail,jdbcType=INTEGER}, 
+      #{goodsName,jdbcType=VARCHAR}, #{goodsPic,jdbcType=VARCHAR}, #{goodsDetail,jdbcType=VARCHAR}, 
       #{goodsOrigin,jdbcType=VARCHAR}, #{oldPrice,jdbcType=DOUBLE}, #{price,jdbcType=DOUBLE}, 
       #{goodsOrdernum,jdbcType=INTEGER}, #{goodsHits,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}
       )
@@ -176,7 +176,7 @@
         #{goodsPic,jdbcType=VARCHAR},
       </if>
       <if test="goodsDetail != null">
-        #{goodsDetail,jdbcType=INTEGER},
+        #{goodsDetail,jdbcType=VARCHAR},
       </if>
       <if test="goodsOrigin != null">
         #{goodsOrigin,jdbcType=VARCHAR},
@@ -223,7 +223,7 @@
         goods_pic = #{record.goodsPic,jdbcType=VARCHAR},
       </if>
       <if test="record.goodsDetail != null">
-        goods_detail = #{record.goodsDetail,jdbcType=INTEGER},
+        goods_detail = #{record.goodsDetail,jdbcType=VARCHAR},
       </if>
       <if test="record.goodsOrigin != null">
         goods_origin = #{record.goodsOrigin,jdbcType=VARCHAR},
@@ -255,7 +255,7 @@
       brand = #{record.brand,jdbcType=VARCHAR},
       goods_name = #{record.goodsName,jdbcType=VARCHAR},
       goods_pic = #{record.goodsPic,jdbcType=VARCHAR},
-      goods_detail = #{record.goodsDetail,jdbcType=INTEGER},
+      goods_detail = #{record.goodsDetail,jdbcType=VARCHAR},
       goods_origin = #{record.goodsOrigin,jdbcType=VARCHAR},
       old_price = #{record.oldPrice,jdbcType=DOUBLE},
       price = #{record.price,jdbcType=DOUBLE},
@@ -282,7 +282,7 @@
         goods_pic = #{goodsPic,jdbcType=VARCHAR},
       </if>
       <if test="goodsDetail != null">
-        goods_detail = #{goodsDetail,jdbcType=INTEGER},
+        goods_detail = #{goodsDetail,jdbcType=VARCHAR},
       </if>
       <if test="goodsOrigin != null">
         goods_origin = #{goodsOrigin,jdbcType=VARCHAR},
@@ -311,7 +311,7 @@
       brand = #{brand,jdbcType=VARCHAR},
       goods_name = #{goodsName,jdbcType=VARCHAR},
       goods_pic = #{goodsPic,jdbcType=VARCHAR},
-      goods_detail = #{goodsDetail,jdbcType=INTEGER},
+      goods_detail = #{goodsDetail,jdbcType=VARCHAR},
       goods_origin = #{goodsOrigin,jdbcType=VARCHAR},
       old_price = #{oldPrice,jdbcType=DOUBLE},
       price = #{price,jdbcType=DOUBLE},

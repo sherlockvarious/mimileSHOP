@@ -1,7 +1,7 @@
 package edu.scdx.demo.controller;
 
+import edu.scdx.demo.entity.Coupon;
 import edu.scdx.demo.entity.Goods;
-import edu.scdx.demo.entity.Orders;
 import edu.scdx.demo.service.GoodService;
 import edu.scdx.demo.service.ManagerService;
 import edu.scdx.demo.utils.Result;
@@ -27,19 +27,20 @@ public class ManagerController {
     @GetMapping("/getgoods")
     @ResponseBody
     /** 对商品的管理*/
+
     public Object getGoods(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10")int limit){
         return Result.success(goodService.findGoods(page,limit),"分页 查询good 对象");
     }
 
     @GetMapping("/listgoods")
-    public String toGoodListPage(){
+    public String toGoodListPage() {
 
         return "/views/good/good-list";
     }
 
     @DeleteMapping("/deletegood")
     @ResponseBody
-    public Object deleteGood(@RequestBody Goods good){
+    public Object deleteGood(@RequestBody Goods good) {
         goodService.deleteGoodById(good);
         return Result.success(good.getGoodsId());
     }
@@ -75,52 +76,66 @@ public class ManagerController {
 
     @DeleteMapping("/deletegoods")
     @ResponseBody
-    public Object deleteGoods(@RequestBody List<Integer> ids){
+    public Object deleteGoods(@RequestBody List<Integer> ids) {
         goodService.deleteGoodsByIds(ids);
         return Result.success();
     }
 
     @RequestMapping("/updategood")
     @ResponseBody
-    public Object updateGoods(@RequestBody Goods good){
+    public Object updateGoods(@RequestBody Goods good) {
         goodService.updateGood(good);
         return Result.success();
     }
 
     @DeleteMapping("/searchgood")
     @ResponseBody
-    public Object getGood(@RequestBody int Goodsid){
+    public Object getGood(@RequestBody int Goodsid) {
         Goods good = goodService.getGood(Goodsid);
         return Result.success(good);
     }
 
     @RequestMapping("/check/sendedOrder")
     @ResponseBody
-    public Object checkSendedOrder(@RequestParam(defaultValue = "1") int page,  @RequestParam(defaultValue = "10")int limit){
+    public Object checkSendedOrder(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int limit) {
 
-        return Result.success(managerService.checkSendedOrder(page,limit),"成功接收数据",200);
+        return Result.success(managerService.checkSendedOrder(page, limit), "成功接收数据", 200);
 
     }
 
     @RequestMapping("/waitToSend")
     @ResponseBody
-    public Object waitToSend(@RequestParam(defaultValue = "1") int page,  @RequestParam(defaultValue = "10")int limit){
-        return Result.success(managerService.waitToSend(page,limit),"成功接收数据",200);
+    public Object waitToSend(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int limit) {
+        return Result.success(managerService.waitToSend(page, limit), "成功接收数据", 200);
     }
 
     @RequestMapping("/toDelivery")
     @ResponseBody
-    public Object toDelivery(int orderId){
-        managerService.toDelivery(orderId);
-        return Result.success();
+    public Object toDelivery(int orderId) {
+        return managerService.toDelivery(orderId) ? Result.success() : Result.error("发货失败");
     }
 
     @RequestMapping("/manageCoupon")
     @ResponseBody
-    public Object manageCoupon(@RequestParam(defaultValue = "1") int page,  @RequestParam(defaultValue = "10")int limit){
-        return Result.success( managerService.viewCoupon(page ,limit),"成功接收数据",200);
+    public Object manageCoupon(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int limit) {
+        return Result.success(managerService.viewCoupon(page, limit), "成功接收数据", 200);
     }
 
+    @RequestMapping("/addCoupon")
+    @ResponseBody
+    public Object addCoupon(Coupon coupon) {
+
+        return managerService.addCoupon(coupon) ? Result.success() : Result.error("添加失败");
+
+    }
+
+    @RequestMapping("/editCoupon")
+    @ResponseBody
+    public Object editCoupon(Coupon coupon) {
+
+        return managerService.editCoupon(coupon) ? Result.success() : Result.error("修改失败");
+
+    }
 }
 
 

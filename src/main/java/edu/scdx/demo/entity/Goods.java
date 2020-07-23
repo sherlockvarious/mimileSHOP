@@ -11,7 +11,7 @@ public class Goods {
 
     private String goodsPic;
 
-    private Integer goodsDetail;
+    private String goodsDetail;
 
     private String goodsOrigin;
 
@@ -65,12 +65,12 @@ public class Goods {
         this.goodsPic = goodsPic == null ? null : goodsPic.trim();
     }
 
-    public Integer getGoodsDetail() {
+    public String getGoodsDetail() {
         return goodsDetail;
     }
 
-    public void setGoodsDetail(Integer goodsDetail) {
-        this.goodsDetail = goodsDetail;
+    public void setGoodsDetail(String goodsDetail) {
+        this.goodsDetail = goodsDetail == null ? null : goodsDetail.trim();
     }
 
     public String getGoodsOrigin() {

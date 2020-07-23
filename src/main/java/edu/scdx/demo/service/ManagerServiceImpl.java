@@ -97,4 +97,27 @@ public class ManagerServiceImpl implements ManagerService {
 
 
     }
+
+    @Override
+    public boolean addCoupon(Coupon coupon) {
+        try {
+            couponMapper.insertSelective(coupon);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    @Override
+    public boolean editCoupon(Coupon coupon) {
+        try {
+            couponMapper.updateByPrimaryKeySelective(coupon);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

@@ -15,7 +15,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">优惠券名称</label>
         <div class="layui-input-block">
-            <input type="text" id="name" name="name" lay-verify="title" autocomplete="off" placeholder="请输入优惠券名称"
+            <input type="text" id="couponName" name="couponName" lay-verify="title" autocomplete="off" placeholder="请输入优惠券名称"
                    class="layui-input">
         </div>
     </div>
@@ -124,8 +124,8 @@
                         content: $("#addWindow"),
                         area: ['800px', '500px'],
                         yes: function (index, layero) {
-                            //alert($("#name").val() + '\n' +$("#full").val() + '\n' +$("#minus").val() + '\n' +$("#startDate").val() + '\n' +$("#endDate").val())
-                            if ($("#name").val() == '') {
+                            //alert($("#couponName").val() + '\n' +$("#full").val() + '\n' +$("#minus").val() + '\n' +$("#startDate").val() + '\n' +$("#endDate").val())
+                            if ($("#couponName").val() == '') {
                                 layer.msg("请输入优惠券名称", {time: 700});
                             } else if ($("#full").val() == '') {
                                 layer.msg("请输入满额", {time: 700});
@@ -142,15 +142,15 @@
                             } else {
                                 $.ajax({
                                     type: "post",
-                                    url: "",//TODO: add url
-                                    contentType: "application/json",
+                                    url: "/manager/addCoupon",//TODO: add url
+                                    //contentType: "application/json",
                                     //TODO:修改变量名
-                                    data: JSON.stringify({
-                                        "name": $("#name").val(),
-                                        "full": $("#full").val(),
-                                        "minus": $("#minus").val(),
-                                        "startDate": $("#startDate").val(),
-                                        "endDate": $("#endDate").val()
+                                    data: ({
+                                        couponName: $("#couponName").val(),
+                                        full: $("#full").val(),
+                                        minus: $("#minus").val(),
+                                        startDate: $("#startDate").val(),
+                                        endDate: $("#endDate").val()
                                     }),
                                     //TODO:修改后端传过来的信息
                                     success: function (msg) {
@@ -210,7 +210,7 @@
                     layer.close(index);
                 });
             } else if (obj.event === 'edit') {
-                $("#name").val(data.username);
+                $("#couponName").val(data.username);
                 $("#full").val(data.experience);
                 $("#minus").val(data.logins);
                 $("#startDate").val(data.joinTime);
@@ -224,7 +224,7 @@
                     content: $("#addWindow"),
                     yes: function (index, layero) {
                         //alert($("#name").val() + '\n' +$("#full").val() + '\n' +$("#minus").val() + '\n' +$("#startDate").val() + '\n' +$("#endDate").val());
-                        if ($("#name").val() == '') {
+                        if ($("#couponName").val() == '') {
                             layer.msg("请输入优惠券名称", {time: 700});
                         } else if ($("#full").val() == '') {
                             layer.msg("请输入满额", {time: 700});
@@ -241,21 +241,21 @@
                         } else {
                             $.ajax({
                                 type: "post",
-                                url: "",//TODO: add url
-                                contentType: "application/json",
+                                url: "/manager/editCoupon",//TODO: add url
+                                //contentType: "application/json",
                                 //TODO:修改变量名
-                                data: JSON.stringify({
-                                    "id": data.id,
-                                    "name": $("#name").val(),
-                                    "full": $("#full").val(),
-                                    "minus": $("#minus").val(),
-                                    "startDate": $("#startDate").val(),
-                                    "endDate": $("#endDate").val()
+                                data: ({
+                                    couponId: data.couponId,
+                                    couponName: $("#couponName").val(),
+                                    full: $("#full").val(),
+                                    minus: $("#minus").val(),
+                                    startDate: $("#startDate").val(),
+                                    endDate: $("#endDate").val()
                                 }),
                                 //TODO:修改后端传过来的信息
                                 success: function (msg) {
                                     if (msg.success === true) {
-                                        layer.msg(msg.message, {time: 700});
+                                        layer.msg("修改成功", {time: 700});
                                         layer.close(index);
                                         table.reload(
                                             'test',
@@ -278,7 +278,7 @@
     });
 
     function empty() {
-        $("#name").val("");
+        $("#couponName").val("");
         $("#full").val("");
         $("#minus").val("");
         $("#startDate").val("");
