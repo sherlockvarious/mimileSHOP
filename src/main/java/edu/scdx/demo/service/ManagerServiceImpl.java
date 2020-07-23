@@ -133,4 +133,56 @@ public class ManagerServiceImpl implements ManagerService {
         }
 
     }
+
+    @Override
+    public boolean addManager(Manager manager){
+        if (managerMapper.insertSelective(manager)==1){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public PageInfo<Manager> findManager(int pageNo, int pageSize) {
+        PageHelper.startPage(pageNo,pageSize);
+        List<Manager> managers = managerMapper.selectByExample(null);
+        return new PageInfo<>(managers);
+    }
+
+    @Override
+    public boolean deleteManager(int managerId){
+        try {
+            managerMapper.deleteByPrimaryKey(managerId);
+            return true;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    @Override
+    public boolean changeManagerPassword(int managerId,String newPassword) {
+
+        try {
+            ManagerExample example = new ManagerExample();
+            Manager manager = managerMapper.selectByPrimaryKey(managerId);
+            managerMapper.updateByExampleSelective(manager,example);
+            return true;
+        }catch (Exception e){
+            return  false;
+        }
+
+    }
+
+    @Override
+    public PageInfo<Manager> findManagers(int pageNo, int pageSize) {
+        PageHelper.startPage(pageNo,pageSize);
+        List<Manager> manager = managerMapper.selectByExample(null);
+        return new PageInfo<>(manager);
+    }
+
+    @Override
+    public void deleteManagerById(Manager manager) {
+        managerMapper.deleteByPrimaryKey(manager.getManagerId());
+    }
 }

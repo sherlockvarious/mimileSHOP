@@ -2,6 +2,7 @@ package edu.scdx.demo.service;
 
 import com.github.pagehelper.PageInfo;
 import edu.scdx.demo.entity.Coupon;
+import edu.scdx.demo.entity.Goods;
 import edu.scdx.demo.entity.Manager;
 import edu.scdx.demo.entity.Orders;
 
@@ -21,4 +22,16 @@ public interface ManagerService {
     public boolean editCoupon(Coupon coupon);
 
     public boolean deleteCoupon(int couponId);
+
+    public boolean addManager(Manager manager);
+
+    public PageInfo<Manager> findManager(int pageNo, int pageSize);
+
+    public boolean deleteManager(int managerId);
+
+    public boolean changeManagerPassword(int managerId,String newPassword);
+
+    public PageInfo<Manager> findManagers(int pageNo, int pageSize);
+
+    public void deleteManagerById(Manager manager);
 }
