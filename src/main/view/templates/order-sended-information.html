@@ -35,10 +35,10 @@
                 {field:'orderId', title:'订单ID',fixed: 'left', unresize: true, sort: true}
                 ,{field:'nickName', title:'用户名'}
                 ,{field:'goodsName', title:'商品名'}
-                ,{field:'creationTime', title:'创建时间', sort: true}
-                ,{field:'payTime', title:'支付时间', sort: true}
-                ,{field:'deliveryTime', title:'发货时间', sort: true}
-                ,{field:'receivingTime', title:'收货时间', sort: true}
+                ,{field:'creationTime', title:'创建时间', sort: true,templet:'<div>{{ layui.util.toDateString(d.creationTime, "yyyy-MM-dd HH:mm:ss") }}</div>'}
+                ,{field:'payTime', title:'支付时间', sort: true,templet:'<div>{{ layui.util.toDateString(d.payTime, "yyyy-MM-dd HH:mm:ss") }}</div>'}
+                ,{field:'deliveryTime', title:'发货时间', sort: true,templet:'<div>{{ layui.util.toDateString(d.deliveryTime, "yyyy-MM-dd HH:mm:ss") }}</div>'}
+                ,{field:'receivingTime', title:'收货时间', sort: true,templet:'<div>{{ layui.util.toDateString(d.receivingTime, "yyyy-MM-dd HH:mm:ss") }}</div>'}
                 ,{field:'moneyOfGoods', title:'商品价格'}
                 ,{field:'moneyOfDelivery', title:'运费价格'}
                 ,{field:'orderPoints', title:'订单积分'}

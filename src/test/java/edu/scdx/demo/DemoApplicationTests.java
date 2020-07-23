@@ -3,6 +3,7 @@ package edu.scdx.demo;
 import edu.scdx.demo.dao.OrdersMapper;
 import edu.scdx.demo.dao.UserMapper;
 import edu.scdx.demo.entity.Orders;
+import edu.scdx.demo.entity.OrdersExample;
 import edu.scdx.demo.entity.User;
 import edu.scdx.demo.entity.UserExample;
 import org.junit.jupiter.api.Test;
@@ -107,16 +108,29 @@ class DemoApplicationTests {
             order.setUserId(52);
             order.setGoodsId(1);
 
-            order.setDeliveryTime(date);
+        //    order.setDeliveryTime(date);
             order.setCreationTime(date);
             order.setPayTime(date);
-            order.setReceivingTime(date);
+          //  order.setReceivingTime(date);
 
             ordersMapper.insertSelective(order);
         }
 
 
     }
+
+    @Test
+    void test9(){
+        int orderId = 143;
+        OrdersExample example = new OrdersExample();
+        example.createCriteria().andOrderIdEqualTo(orderId);
+        Orders orders = new Orders();
+        orders.setDeliveryTime(new Date());
+
+
+        ordersMapper.updateByExampleSelective(orders,example);
+    }
+
 
 
 }

@@ -1,6 +1,7 @@
 package edu.scdx.demo.controller;
 
 import edu.scdx.demo.entity.Goods;
+import edu.scdx.demo.entity.Orders;
 import edu.scdx.demo.service.GoodService;
 import edu.scdx.demo.service.ManagerService;
 import edu.scdx.demo.utils.Result;
@@ -75,6 +76,22 @@ public class ManagerController {
         return Result.success(managerService.checkSendedOrder(page,limit),"成功接收数据",200);
 
     }
+
+    @RequestMapping("/waitToSend")
+    @ResponseBody
+    public Object waitToSend(@RequestParam(defaultValue = "1") int page,  @RequestParam(defaultValue = "10")int limit){
+        return Result.success(managerService.waitToSend(page,limit),"成功接收数据",200);
+    }
+
+    @RequestMapping("/toDelivery")
+    @ResponseBody
+    public Object toDelivery(Orders orders){
+        System.out.println("hello");
+
+        managerService.toDelivery(orders.getOrderId());
+        return null;
+    }
+
 
 }
 

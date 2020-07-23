@@ -18,4 +18,5 @@ public interface OrdersMapperExtend {
      */
     List<Orders> selectSendedOrder();
 
+    List<Orders> selectWaitToSendedOrder();
 }

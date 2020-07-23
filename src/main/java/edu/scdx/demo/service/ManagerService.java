@@ -8,4 +8,8 @@ public interface ManagerService {
     public Manager login(Manager manager);
 
     public PageInfo<Orders> checkSendedOrder(int page, int limit);
+
+    public PageInfo<Orders> waitToSend(int page, int limit);
+
+    public boolean toDelivery(int orderId);
 }

@@ -24,4 +24,12 @@
         from user ,orders, goods
         where delivery_time is not null
     </select>
+
+    <select id="selectWaitToSendedOrder" resultMap="myBaseResultMap">
+         select  order_id, orders.user_id, orders.goods_id, creation_time, pay_time, delivery_time, receiving_time,
+    money_of_goods, money_of_delivery, order_points, coupon_id,nick_name,goods_name
+        from user ,orders, goods
+        where delivery_time is null
+        and pay_time is not null
+    </select>
 </mapper>
