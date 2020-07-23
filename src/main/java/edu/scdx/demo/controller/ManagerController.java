@@ -83,7 +83,20 @@ public class ManagerController {
 
     @RequestMapping("/updategood")
     @ResponseBody
-    public Object updateGoods(@RequestBody Goods good) {
+    public Object updateGoods(Goods good, String imageData) {
+        if(imageData!=""){
+            String path = ClassUtils.getDefaultClassLoader().getResource("").getPath();
+            File upload = new File(path+"/static/image/");
+            if(!upload.exists()) upload.mkdirs();
+            String filepath = path+"/static/image/"+good.getGoodsName()+".jpg";
+            File imgFile = new File(filepath);
+            try {
+                saveImage(new ByteArrayInputStream(imageData.getBytes("ISO-8859-1")), imgFile);
+                good.setGoodsPic( "/image/"+good.getGoodsName()+".jpg");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         goodService.updateGood(good);
         return Result.success();
     }

@@ -262,7 +262,7 @@
                         var goodsOrigin = $("#goodsOrigin").val();
                         var goodsOriginNew = "";
                         var re = /^[1-9]+[0-9]*]*$/;
-                        alert(goodsName + '\n' + goodsBrand + '\n' + goodsType + '\n'+ goodsTypeNew + '\n' + goodsDetail + '\n' + goodsProvince + '\n' + goodsCity + '\n' + goodsDistinct + '\n' + goodsNum + '\n' + goodsPrice + '\n'+ goodsOrigin + '\n' + imageData);
+                        //alert(goodsName + '\n' + goodsBrand + '\n' + goodsType + '\n'+ goodsTypeNew + '\n' + goodsDetail + '\n' + goodsProvince + '\n' + goodsCity + '\n' + goodsDistinct + '\n' + goodsNum + '\n' + goodsPrice + '\n'+ goodsOrigin + '\n' + imageData);
                         if (goodsTypeNew == "请选择") {
                             goodsTypeNew = "";
                         }
@@ -292,22 +292,23 @@
                             $.ajax({
                                 url: "/manager/updategood", //TODO: url
                                 type: "post",
-                                contentType: "application/json",
+                                //contentType: "application/json",
                                 //TODO: param name
-                                data: JSON.stringify({
-                                    goodsID:data.id,
+                                data:{
+                                    goodsID:data.goodsId,
                                     goodsName: goodsName,
-                                    goodsBrand: goodsBrand,
-                                    goodsType: goodsType,
+                                    brand: goodsBrand,
+                                    typeName: goodsType,
                                     goodsDetail: goodsDetail,
                                     goodsOrigin:goodsOrigin,
-                                    goodsNum: goodsNum,
-                                    goodsPrice: goodsPrice,
-                                    goodsPic: imgBinaryString
-                                }),
+                                    count: goodsNum,
+                                    price: goodsPrice,
+                                    goodsPic: data.goodsPic,
+                                    imageData:imageData
+                                },
                                 success: function (msg) {
                                     if (msg.success === true) {
-                                        layer.msg(msg.message, {time: 700});
+                                        layer.msg("编辑成功", {time: 700});
                                         layer.close(index);
                                         table.reload(
                                             'test',
@@ -318,7 +319,7 @@
                                             }
                                         )
                                     } else {
-                                        layer.msg(msg.message, {time: 700});
+                                        layer.msg("编辑失败", {time: 700});
                                     }
                                 }
                             });
