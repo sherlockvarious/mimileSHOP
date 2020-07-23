@@ -80,17 +80,17 @@
 
         table.render({
             elem: '#test'
-            , url: '' //TODO：修改路径
+            , url: '/manager/manageCoupon' //TODO：修改路径
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , title: '优惠券信息表'
             , cellMinWidth: 80
             , cols: [[
-                {field: 'id', title: '优惠券ID', sort: true}
-                , {field: 'username', title: '优惠券名称'}
-                , {field: 'experience', title: '满额'}
-                , {field: 'logins', title: '减额'}
-                , {field: 'joinTime', title: '起始日期'}
-                , {field: 'joinTime', title: '结束日期'}
+                {field: 'couponId', title: '优惠券ID', sort: true}
+                , {field: 'couponName', title: '优惠券名称'}
+                , {field: 'full', title: '满额'}
+                , {field: 'minus', title: '减额'}
+                , {field: 'startDate', title: '起始日期'}
+                , {field: 'endDate', title: '结束日期'}
                 , {fixed: 'right', title: '操作', toolbar: '#barDemo'}
             ]]
             , page: true

@@ -69,14 +69,16 @@
         //监听行工具事件
         table.on('tool(test)', function(obj){
             var data = obj.data;
-            console.log(data);
+           // console.log(orderId);
             if(obj.event === 'send'){
                 layer.confirm('确定发货吗', function(index){
                     $.ajax({
                         type: "post",
                         url: "/manager/toDelivery", //TODO: add url
-                        contentType:"application/json",
-                        data:JSON.stringify({"orders":data }),//TODO: modify param name，这边发过去的是订单的id，变量名需要修改
+                      //  contentType:"application/json",
+                        data:{
+                            orderId: data.orderId
+                        },//TODO: modify param name，这边发过去的是订单的id，变量名需要修改
                         success: function(msg){
                             if(msg.success === true){
                                 layer.msg("发货成功",{time:700});

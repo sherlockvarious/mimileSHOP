@@ -35,15 +35,15 @@
         </javaClientGenerator>
 
 
-        <table tableName="address" domainObjectName="Address"></table>
-        <table tableName="coupon" domainObjectName="Coupon"></table>
-        <table tableName="goods" domainObjectName="Goods"></table>
-        <table tableName="manager" domainObjectName="Manager"></table>
-        <table tableName="managerrecord" domainObjectName="ManagerRecord"></table>
-        <table tableName="orders" domainObjectName="Orders"></table>
-        <table tableName="shoppingcord" domainObjectName="ShoppingCord"></table>
-        <table tableName="type" domainObjectName="Type"></table>
-        <table tableName="user" domainObjectName="User"></table>
+<!--        <table tableName="address" domainObjectName="Address"></table>-->
+<!--        <table tableName="coupon" domainObjectName="Coupon"></table>-->
+<!--        <table tableName="goods" domainObjectName="Goods"></table>-->
+<!--        <table tableName="manager" domainObjectName="Manager"></table>-->
+<!--        <table tableName="managerrecord" domainObjectName="ManagerRecord"></table>-->
+<!--        <table tableName="orders" domainObjectName="Orders"></table>-->
+<!--        <table tableName="shoppingcord" domainObjectName="ShoppingCord"></table>-->
+<!--        <table tableName="type" domainObjectName="Type"></table>-->
+<!--        <table tableName="user" domainObjectName="User"></table>-->
         <table tableName="get_coupon" domainObjectName="getCoupon"></table>
         <!--<table tableName="Book" domainObjectName="Book"/>-->
 

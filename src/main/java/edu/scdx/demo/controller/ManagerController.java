@@ -69,6 +69,7 @@ public class ManagerController {
         Goods good = goodService.getGood(Goodsid);
         return Result.success(good);
     }
+
     @RequestMapping("/check/sendedOrder")
     @ResponseBody
     public Object checkSendedOrder(@RequestParam(defaultValue = "1") int page,  @RequestParam(defaultValue = "10")int limit){
@@ -85,13 +86,16 @@ public class ManagerController {
 
     @RequestMapping("/toDelivery")
     @ResponseBody
-    public Object toDelivery(Orders orders){
-        System.out.println("hello");
-
-        managerService.toDelivery(orders.getOrderId());
-        return null;
+    public Object toDelivery(int orderId){
+        managerService.toDelivery(orderId);
+        return Result.success();
     }
 
+    @RequestMapping("/manageCoupon")
+    @ResponseBody
+    public Object manageCoupon(@RequestParam(defaultValue = "1") int page,  @RequestParam(defaultValue = "10")int limit){
+        return Result.success( managerService.viewCoupon(page ,limit),"成功接收数据",200);
+    }
 
 }
 
