@@ -7,7 +7,6 @@ import edu.scdx.demo.entity.OrdersExample;
 import edu.scdx.demo.entity.User;
 import edu.scdx.demo.entity.UserExample;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.mail.SimpleMailMessage;
@@ -53,20 +52,17 @@ class DemoApplicationTests {
 
     }
 
-    @Autowired
+    @Resource
     private JavaMailSender mailSender;
 
     @Test
-    /**
-     * 测试发送验证码
-     */
     void sendMail(){
         Random random = new Random();
         String email = "2737793330@qq.com";
         StringBuilder checkNum = new StringBuilder();
 
         for (int i = 0; i < 4; i++) {
-            checkNum.append(Integer.toString(random.nextInt(10)));
+            checkNum.append(random.nextInt(10));
         }
 
         SimpleMailMessage message = new SimpleMailMessage();

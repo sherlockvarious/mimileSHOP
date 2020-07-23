@@ -25,6 +25,24 @@ public class Goods {
 
     private Integer count;
 
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "goodsId=" + goodsId +
+                ", typeName='" + typeName + '\'' +
+                ", brand='" + brand + '\'' +
+                ", goodsName='" + goodsName + '\'' +
+                ", goodsPic='" + goodsPic + '\'' +
+                ", goodsDetail='" + goodsDetail + '\'' +
+                ", goodsOrigin='" + goodsOrigin + '\'' +
+                ", oldPrice=" + oldPrice +
+                ", price=" + price +
+                ", goodsOrdernum=" + goodsOrdernum +
+                ", goodsHits=" + goodsHits +
+                ", count=" + count +
+                '}';
+    }
+
     public Integer getGoodsId() {
         return goodsId;
     }
