@@ -100,7 +100,6 @@
             }
             ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
 
-                //alert(JSON.parse(res));
                 return {
                     //TODO:修改接口变量
                     "code": res.code, //解析接口状态
@@ -143,8 +142,6 @@
                                 $.ajax({
                                     type: "post",
                                     url: "/manager/addCoupon",//TODO: add url
-                                    //contentType: "application/json",
-                                    //TODO:修改变量名
                                     data: ({
                                         couponName: $("#couponName").val(),
                                         full: $("#full").val(),
@@ -181,15 +178,14 @@
         //监听行工具事件
         table.on('tool(test)', function (obj) {
             var data = obj.data;
-            //console.log(obj)
             if (obj.event === 'del') {
                 layer.confirm('确定要删除此优惠券吗', function (index) {
-                    //obj.del();
                     $.ajax({
                         type: "post",
-                        url: "", //TODO: add url
-                        contentType: "application/json",
-                        data: JSON.stringify({"id": data.id}),//TODO: modify param name
+                        url: "/manager/deleteCoupon", //TODO: add url
+                        data: ({
+                            couponId: data.couponId
+                        }),//TODO: modify param name
                         //TODO:修改后端传过来的信息
                         success: function (msg) {
                             if (msg.success === true) {
@@ -242,8 +238,6 @@
                             $.ajax({
                                 type: "post",
                                 url: "/manager/editCoupon",//TODO: add url
-                                //contentType: "application/json",
-                                //TODO:修改变量名
                                 data: ({
                                     couponId: data.couponId,
                                     couponName: $("#couponName").val(),

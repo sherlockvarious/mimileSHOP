@@ -120,4 +120,17 @@ public class ManagerServiceImpl implements ManagerService {
             return false;
         }
     }
+
+    @Override
+    public boolean deleteCoupon(int couponId) {
+        try {
+            couponMapper.deleteByPrimaryKey(couponId);
+            return true;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
+    }
 }

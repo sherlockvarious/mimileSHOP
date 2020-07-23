@@ -19,4 +19,6 @@ public interface ManagerService {
     public boolean addCoupon(Coupon coupon);
 
     public boolean editCoupon(Coupon coupon);
+
+    public boolean deleteCoupon(int couponId);
 }

@@ -136,6 +136,14 @@ public class ManagerController {
         return managerService.editCoupon(coupon) ? Result.success() : Result.error("修改失败");
 
     }
+
+    @RequestMapping("/deleteCoupon")
+    @ResponseBody
+    public Object deleteCoupon(int couponId){
+
+        return managerService.deleteCoupon(couponId)?Result.success():Result.error("删除失败");
+
+    }
 }
 
 
