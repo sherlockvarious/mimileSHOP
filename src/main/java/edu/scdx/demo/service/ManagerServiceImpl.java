@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import edu.scdx.demo.dao.CouponMapper;
 import edu.scdx.demo.dao.ManagerMapper;
+import edu.scdx.demo.dao.ManagerRecordMapper;
 import edu.scdx.demo.dao.OrdersMapper;
 import edu.scdx.demo.entity.*;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Resource
     private CouponMapper couponMapper;
+
+    @Resource
+    ManagerRecordMapper managerRecordMapper;
 
     @Override
     public PageInfo<Coupon> viewCoupon(int page, int limit) {
@@ -153,6 +157,7 @@ public class ManagerServiceImpl implements ManagerService {
             return false;
         }
     }
+
     @Override
     public boolean changeManagerPassword(int managerId,String password) {
 
@@ -174,5 +179,17 @@ public class ManagerServiceImpl implements ManagerService {
         PageHelper.startPage(pageNo,pageSize);
         List<Manager> manager = managerMapper.selectByExample(null);
         return new PageInfo<>(manager);
+    }
+
+    @Override
+    public void update(Manager managerInDB) {
+        managerMapper.updateByPrimaryKeySelective(managerInDB);
+    }
+
+    @Override
+    public PageInfo<ManagerRecord> findManagerRecord(int page, int limit) {
+        PageHelper.startPage(page,limit);
+        List<ManagerRecord> records = managerRecordMapper.selectByExample(null);
+        return new PageInfo<>(records);
     }
 }

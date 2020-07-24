@@ -3,9 +3,11 @@ package edu.scdx.demo.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import edu.scdx.demo.dao.CouponMapper;
+import edu.scdx.demo.dao.GoodsMapper;
 import edu.scdx.demo.dao.ManagerRecordMapper;
 import edu.scdx.demo.dao.OrdersMapper;
 import edu.scdx.demo.entity.Coupon;
+import edu.scdx.demo.entity.Goods;
 import edu.scdx.demo.entity.ManagerRecord;
 import edu.scdx.demo.entity.Orders;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,9 @@ public class RecordServiceImpl implements RecordService {
 
     @Resource
     OrdersMapper ordersMapper;
+
+    @Resource
+    GoodsMapper goodsMapper;
 
     @Override
     public boolean addRecord(ManagerRecord record) {
@@ -53,6 +58,11 @@ public class RecordServiceImpl implements RecordService {
     @Override
     public Coupon selectCouponByPrimarykey(int couponId) {
         return couponMapper.selectByPrimaryKey(couponId);
+    }
+
+    @Override
+    public Goods selectGoods(Goods good) {
+        return goodsMapper.selectByPrimaryKey(good.getGoodsId());
     }
 }
 

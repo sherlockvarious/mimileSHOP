@@ -28,10 +28,7 @@ public class GoodServiceImpl implements GoodService{
         goodsMapper.deleteByPrimaryKey(goods.getGoodsId());
     }
 
-    @Override
-    public void deleteGoodsByIds(List<Integer> ids) {
 
-    }
     @Override
     public boolean insertGoods(Goods good){
         if (goodsMapper.insertSelective(good)==1){

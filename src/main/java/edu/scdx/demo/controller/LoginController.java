@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 /**
  * @author 27377-sun chao
@@ -31,13 +32,17 @@ public class LoginController {
 
     @RequestMapping("/manager")
     @ResponseBody
-    public Object managerLogin(Manager manager) {
+    public Object managerLogin(Manager manager,HttpServletRequest request) {
         Manager managerInDB = managerService.login(manager);
         if (managerInDB == null) {
             return Result.error("用户名不存在");
         } else {
             String passwordInDB = managerInDB.getPassword();
             if (passwordInDB.equals(manager.getPassword())) {
+                managerInDB.setLastLoginIp(userService.getIpAddress(request));
+                managerInDB.setLastLoginTime(new Date());
+
+                managerService.update(managerInDB);
                 return Result.success(managerInDB);
             } else {
                 return Result.error("登录失败");

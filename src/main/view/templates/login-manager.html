@@ -73,18 +73,15 @@
             layer.msg("请输入密码", {time: 1000});
         } else {
             $.ajax({
-                //TODO:填写url
                 url: "/login/manager",
                 type: "post",
                 data: {
-                    //TODO:可能需要修改变量名
                     managerId: $("#id").val(),
                     password: $("#password").val()
                 },
                 success: function (data) {
                     if (data.success === true) {
                         layer.msg("成功登录", {time: 1000});
-                        //TODO:修改首页路径，可能还要加上全局变量
                         localStorage.setItem('managerId',data.data.managerId);
                         localStorage.setItem('managerName',data.data.name);
                         setTimeout(function () {

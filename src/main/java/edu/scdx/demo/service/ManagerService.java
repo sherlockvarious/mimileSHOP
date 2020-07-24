@@ -1,10 +1,7 @@
 package edu.scdx.demo.service;
 
 import com.github.pagehelper.PageInfo;
-import edu.scdx.demo.entity.Coupon;
-import edu.scdx.demo.entity.Goods;
-import edu.scdx.demo.entity.Manager;
-import edu.scdx.demo.entity.Orders;
+import edu.scdx.demo.entity.*;
 
 public interface ManagerService {
     public Manager login(Manager manager);
@@ -31,4 +28,7 @@ public interface ManagerService {
 
     public PageInfo<Manager> findManagers(int pageNo, int pageSize);
 
+    public void update(Manager managerInDB);
+
+    public PageInfo<ManagerRecord> findManagerRecord(int page, int limit);
 }

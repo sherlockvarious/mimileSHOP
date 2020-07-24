@@ -63,7 +63,6 @@
 
                 //alert(JSON.parse(res));
                 return {
-                    //TODO:修改接口变量
                     "code": res.code, //解析接口状态
                     "msg": res.message, //解析提示文本
                     "count": res.data.total, //解析数据长度
@@ -86,11 +85,12 @@
                         yes:function(index,layero){
                             $.ajax({
                                 type: "post",
-                                url: "/manager/addmanager",//TODO: add url
-                                contentType:"application/json",
-                                data:JSON.stringify({
-                                    "name":$("#name").val(),
-                                    "password":$("#password").val()
+                                url: "/manager/addmanager",
+                                data:({
+                                    name:$("#name").val(),
+                                    password:$("#password").val(),
+                                    who: localStorage.getItem('managerId')
+
                                 }),
                                 success: function(msg){
                                     if(msg.success === true){
@@ -122,8 +122,12 @@
                     //obj.del();
                     $.ajax({
                         type: "delete",
-                        url: "/manager/deletemanager", //TODO: add url
-                        data:{"managerId":data.managerId },//TODO: modify param name
+                        url: "/manager/deletemanager",
+                        data:{
+                            managerId:data.managerId,
+                            who: localStorage.getItem('managerId')
+
+                        },//TODO: modify param name
                         success: function(msg){
                             if(msg.success === true){
                                 layer.msg("删除成功",{time:700});

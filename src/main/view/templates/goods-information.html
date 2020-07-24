@@ -183,7 +183,6 @@
             }
             ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
 
-                //alert(JSON.parse(res));
                 return {
                     "code": res.code, //解析接口状态
                     "msg": res.message, //解析提示文本
@@ -201,9 +200,10 @@
                     $.ajax({
                         type: "delete",
                         url: "/manager/deletegood", //TODO: add url
-                        contentType: "application/json",
-                        data: JSON.stringify({"goodsId": data.goodsId}),//TODO: modify param name
-                        //TODO:修改后端传过来的信息
+                        data: ({
+                            "goodsId": data.goodsId,
+                            managerId: localStorage.getItem('managerId')
+                        }),
                         success: function (msg) {
                             if (msg.success === true) {
                                 layer.msg("删除成功", {time: 700});
@@ -223,7 +223,6 @@
                     layer.close(index);
                 });
             } else if (obj.event === 'edit') {
-                //TODO：这个部分可能也要修改data里的变量名
                 $("#goodsName").val(data.goodsName);
                 $("#goodsBrand").val(data.brand);
                 $("#goodsType").val(data.typeName);
@@ -281,10 +280,8 @@
                             layer.msg("价格请输入数字", {time: 700});
                         } else {
                             $.ajax({
-                                url: "/manager/updategood", //TODO: url
+                                url: "/manager/updategood",
                                 type: "post",
-                                //contentType: "application/json",
-                                //TODO: param name
                                 data:{
                                     goodsId:data.goodsId,
                                     goodsName: goodsName,
@@ -296,7 +293,8 @@
                                     oldPrice:data.oldPrice,
                                     price: goodsPrice,
                                     goodsPic: data.goodsPic,
-                                    imageData:imageData
+                                    imageData:imageData,
+                                    managerId: localStorage.getItem('managerId')
                                 },
                                 success: function (msg) {
                                     if (msg.success === true) {

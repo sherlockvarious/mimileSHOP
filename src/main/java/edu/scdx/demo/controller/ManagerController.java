@@ -37,7 +37,6 @@ public class ManagerController {
     @ResponseBody
     /** 对商品的管理*/
     public Object getGoods(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10")int limit){
-        System.out.println("hello");
         return Result.success(goodService.findGoods(page,limit));
     }
 
@@ -49,7 +48,24 @@ public class ManagerController {
 
     @DeleteMapping("/deletegood")
     @ResponseBody
-    public Object deleteGood(@RequestBody Goods good) {
+    public Object deleteGood(Goods good,int managerId ) {
+
+        Goods old = recordService.selectGoods(good);
+
+        try {
+            String detail = "管理员"+managerId+"删除了商品:"+old.toString();
+
+            ManagerRecord record = new ManagerRecord();
+            record.setManagerId(managerId);
+            record.setDetail(detail);
+            record.setTime(new Date());
+
+            recordService.addRecord(record);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         goodService.deleteGoodById(good);
         return Result.success(good.getGoodsId());
     }
@@ -101,16 +117,13 @@ public class ManagerController {
         ins.close();
     }
 
-    @DeleteMapping("/deletegoods")
-    @ResponseBody
-    public Object deleteGoods(@RequestBody List<Integer> ids) {
-        goodService.deleteGoodsByIds(ids);
-        return Result.success();
-    }
 
     @RequestMapping("/updategood")
     @ResponseBody
-    public Object updateGoods(Goods good, String imageData) {
+    public Object updateGoods(Goods good, String imageData,int managerId) {
+
+        Goods old = recordService.selectGoods(good);
+
         if(imageData!=""){
             String path = ClassUtils.getDefaultClassLoader().getResource("").getPath();
             File upload = new File(path+"/static/image/");
@@ -124,6 +137,22 @@ public class ManagerController {
                 e.printStackTrace();
             }
         }
+
+        try {
+            String detail = "管理员"+managerId+"修改了商品信息"+"\n"+"修改前："+old.toString()+"\n"+"修改后："+good.toString();
+
+            ManagerRecord record = new ManagerRecord();
+            record.setManagerId(managerId);
+            record.setDetail(detail);
+            record.setTime(new Date());
+
+            recordService.addRecord(record);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
         goodService.updateGood(good);
         return Result.success();
     }
@@ -235,7 +264,7 @@ public class ManagerController {
     /** 对商品的管理*/
 
     public Object getManagers(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10")int limit){
-        return Result.success(managerService.findManagers(page,limit),"分页 查询good 对象");
+        return Result.success(managerService.findManagers(page,limit));
     }
 
     @GetMapping("/listmanagers")
@@ -246,7 +275,18 @@ public class ManagerController {
 
     @DeleteMapping("/deletemanager")
     @ResponseBody
-    public Object deleteManager(int managerId) {
+    public Object deleteManager(int managerId,int who) {
+
+        String detail = "管理员"+who+"删除了管理员"+managerId;
+
+        ManagerRecord record = new ManagerRecord();
+        record.setManagerId(who);
+        record.setDetail(detail);
+        record.setTime(new Date());
+
+        recordService.addRecord(record);
+
+
         managerService.deleteManager(managerId);
         return Result.success();
     }
@@ -260,10 +300,31 @@ public class ManagerController {
 
     @RequestMapping("/addmanager")
     @ResponseBody
-    public Object addManager(@RequestBody Manager manager) {
+    public Object addManager(Manager manager,int who) {
+
+        String detail = "管理员"+who+"添加了管理员"+manager.getName();
+
+        ManagerRecord record = new ManagerRecord();
+        record.setManagerId(who);
+        record.setDetail(detail);
+        record.setTime(new Date());
+
+        recordService.addRecord(record);
         managerService.addManager(manager);
         return Result.success(manager.getManagerId());
     }
+
+
+    @RequestMapping("/getManagerRecord")
+    @ResponseBody
+    public Object getManagerRecord(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int limit){
+        System.out.println("hello");
+        return Result.success(managerService.findManagerRecord(page,limit),"查询成功",200);
+
+    }
 }
+
+
+
 
 

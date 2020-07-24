@@ -2,6 +2,7 @@ package edu.scdx.demo.service;
 
 import com.github.pagehelper.PageInfo;
 import edu.scdx.demo.entity.Coupon;
+import edu.scdx.demo.entity.Goods;
 import edu.scdx.demo.entity.ManagerRecord;
 import edu.scdx.demo.entity.Orders;
 
@@ -14,4 +15,6 @@ public interface RecordService {
     public Orders selectOrder(int orderId);
 
     Coupon selectCouponByPrimarykey(int couponId);
+
+    Goods selectGoods(Goods good);
 }
