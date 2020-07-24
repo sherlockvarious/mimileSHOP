@@ -246,7 +246,7 @@ public class ManagerController {
 
     @DeleteMapping("/deletemanager")
     @ResponseBody
-    public Object deleteManager(@RequestBody int managerId) {
+    public Object deleteManager(int managerId) {
         managerService.deleteManager(managerId);
         return Result.success();
     }
@@ -258,7 +258,7 @@ public class ManagerController {
         return Result.success();
     }
 
-    @DeleteMapping("/addmanager")
+    @RequestMapping("/addmanager")
     @ResponseBody
     public Object addManager(@RequestBody Manager manager) {
         managerService.addManager(manager);

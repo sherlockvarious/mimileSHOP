@@ -142,12 +142,12 @@
                     layer.msg("密码长度大于16字符，请修改", {time: 700});
                 } else {
                     $.ajax({
-                        url: "", //TODO: url
+                        url: "/manager/changePassword", //TODO: url
                         type: "post",
                         //TODO: param name,managerid从localstorage获取
                         data: {
-                            id: managerid,
-                            password: password
+                            managerId: localStorage.getItem('managerId'),
+                            newPassword: password
                         },
                         success: function (data) {
                             if (data.success === true) {

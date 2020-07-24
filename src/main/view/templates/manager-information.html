@@ -44,12 +44,12 @@
 
         table.render({
             elem: '#test'
-            ,url:'' //TODO：修改路径
+            ,url:'/manager/getmanagers' //TODO：修改路径
             ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             ,title: '管理员信息表'
             ,cellMinWidth: 80
             ,cols: [[
-                {field:'id', title:'管理员ID', sort: true}
+                {field:'managerId', title:'管理员ID', sort: true}
                 ,{field:'name', title:'管理员姓名'}
                 ,{field:'password', title:'密码'}
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo'}
@@ -86,7 +86,7 @@
                         yes:function(index,layero){
                             $.ajax({
                                 type: "post",
-                                url: "",//TODO: add url
+                                url: "/manager/addmanager",//TODO: add url
                                 contentType:"application/json",
                                 data:JSON.stringify({
                                     "name":$("#name").val(),
@@ -121,10 +121,9 @@
                 layer.confirm('确定要删除此管理员吗', function(index){
                     //obj.del();
                     $.ajax({
-                        type: "post",
-                        url: "", //TODO: add url
-                        contentType:"application/json",
-                        data:JSON.stringify({"id":data.id }),//TODO: modify param name
+                        type: "delete",
+                        url: "/manager/deletemanager", //TODO: add url
+                        data:{"managerId":data.managerId },//TODO: modify param name
                         success: function(msg){
                             if(msg.success === true){
                                 layer.msg("删除成功",{time:700});
