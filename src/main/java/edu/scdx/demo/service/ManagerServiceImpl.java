@@ -154,11 +154,13 @@ public class ManagerServiceImpl implements ManagerService {
         }
     }
     @Override
-    public boolean changeManagerPassword(int managerId,String newPassword) {
+    public boolean changeManagerPassword(int managerId,String password) {
 
         try {
             ManagerExample example = new ManagerExample();
-            Manager manager = managerMapper.selectByPrimaryKey(managerId);
+            Manager manager = new Manager();
+            manager.setPassword(password);
+            example.createCriteria().andManagerIdEqualTo(managerId);
             managerMapper.updateByExampleSelective(manager,example);
             return true;
         }catch (Exception e){

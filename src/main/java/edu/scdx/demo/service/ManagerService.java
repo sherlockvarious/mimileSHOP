@@ -27,7 +27,7 @@ public interface ManagerService {
 
     public boolean deleteManager(int managerId);
 
-    public boolean changeManagerPassword(int managerId,String newPassword);
+    public boolean changeManagerPassword(int managerId,String password);
 
     public PageInfo<Manager> findManagers(int pageNo, int pageSize);
 
