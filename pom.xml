@@ -100,7 +100,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
-            <version>5.1.46</version>
+            <version>8.0.28</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-spring-boot-starter -->
@@ -151,7 +151,7 @@
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
                         <scope>runtime</scope>
-                        <version>5.1.46</version>
+                        <version>8.0.28</version>
                     </dependency>
                     <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-spring-boot-starter -->
                     <dependency>
